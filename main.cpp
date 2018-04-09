@@ -292,7 +292,7 @@ int main()
 			}
 		}
 
-		//rysowanie
+		//rysowanie //Test
 		window.clear();
 		window.draw(cialo);
 		window.draw(armata);
