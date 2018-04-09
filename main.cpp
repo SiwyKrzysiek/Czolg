@@ -198,6 +198,7 @@ int main()
 	Clock clock;
 	//Time reload;
 
+
 	//otwiera sie okienko
 	while (window.isOpen())
 	{
@@ -235,13 +236,15 @@ int main()
 		//kierunek i wektor strzalu
 		float f = 10; //Predkosc pocisku
 		//Vector2f kierunek = Vector2f(cos(atan2(b, a))*armata.getSize().x, sin(atan2(b, a))*armata.getSize().x)*f;
-		Vector2f kierunek = Vector2f(cos(atan2(b, a)), sin(atan2(b, a)))*f;
+		static Vector2f kierunek;
 
 		//strzal
 		if (pomc == 0 && reload.asSeconds()>3)
 		{
 			if (Mouse::isButtonPressed(Mouse::Left))
 			{
+				kierunek = Vector2f(cos(atan2(b, a)), sin(atan2(b, a)))*f;
+
 				pocisk.setPosition(armata.getPosition().x + (cos(atan2(b, a))*armata.getSize().x), armata.getPosition().y + (sin(atan2(b, a))*armata.getSize().x));
 				pomc = 1;
 			}
@@ -292,7 +295,7 @@ int main()
 			}
 		}
 
-		//rysowanie //Test
+		//rysowanie
 		window.clear();
 		window.draw(cialo);
 		window.draw(armata);
