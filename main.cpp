@@ -10,6 +10,8 @@
 #include <SFML/Graphics.hpp>
 #include<vector>
 
+#include "Czolg.h"
+
 using namespace sf;
 using namespace std;
 
@@ -17,7 +19,7 @@ template <typename T>
 string toString(const T& t)
 {
 	stringstream ss;
-	ss << T;
+	ss << t;
 	string tmp;
 	ss >> tmp;
 
@@ -120,7 +122,7 @@ int main()
 	//sprawdzenie odleglosci kulek od czolgu
 	for (int z = 0; z < LICZBA_KULEK; z++)
 	{
-		float dl = 0;
+		double dl = 0;
 		while (dl < armata.getSize().x)
 		{
 			int xt = xpos[z] + kulki[z].getRadius(); //Dlaczego dodaje sie promien?
@@ -142,10 +144,10 @@ int main()
 		}
 
 		//sprawdzenie czy kulki sie nakladaja
-		float odl = 0;
+		double odl = 0;
 		for (int c = 0; c < z; c++) //Dla kazdej wczesniejszej kulki
 		{
-			float sumaPromieni = kulki[c].getRadius() + kulki[z].getRadius();
+			double sumaPromieni = kulki[c].getRadius() + kulki[z].getRadius();
 
 			int xz = xpos[z] + kulki[z].getRadius(); //X srodka aktualnej kulki
 			int xc = xpos[c] + kulki[c].getRadius(); //X srodka wczesniejszej kulki
@@ -310,9 +312,11 @@ int main()
 
 		//rysowanie
 		window.clear();
-		window.draw(cialo);
-		window.draw(armata);
-		window.draw(male);
+		Czolg czolg;
+		window.draw(czolg);
+		//window.draw(cialo);
+		//window.draw(armata);
+		//window.draw(male);
 		for (int z = 0; z < LICZBA_KULEK; z++)
 		{
 			window.draw(kulki[z]);
