@@ -54,7 +54,7 @@ int main()
 	RenderWindow window(VideoMode(800, 600), "Gra w strzelanie kolorowa kulka", Style::Default, settings);
 	window.setFramerateLimit(60);
 
-#if 0
+#if 1
 	//promien czolgu
 	int r = 100;
 
@@ -203,7 +203,7 @@ int main()
 	//pocisk
 	CircleShape pocisk;
 	pocisk.setFillColor(Color::Red);
-	pocisk.setRadius(armata.getSize().y / 5);
+	pocisk.setRadius(czolg.getCanonSize().y / 5);
 	pocisk.setPosition(-100, -100);
 	pocisk.setOrigin(pocisk.getRadius(), pocisk.getRadius());
 
@@ -255,7 +255,7 @@ int main()
 		static Vector2f kierunek;
 
 		//strzal
-		if (pociskLeci == 0 && reload.asSeconds()>3)
+		if (pociskLeci == 0 && reload.asSeconds()>3) //Todo Zrobiæ by to Czo³g sztrzela³
 		{
 			if (Mouse::isButtonPressed(Mouse::Left))
 			{

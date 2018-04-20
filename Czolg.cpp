@@ -59,6 +59,11 @@ sf::FloatRect Czolg::getLocalBounds() const
 	return  FloatRect{ getPosition(), armata.getSize() };
 }
 
+const sf::Vector2f& Czolg::getCanonSize() const
+{
+	return armata.getSize();
+}
+
 void Czolg::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(cialo, states);
