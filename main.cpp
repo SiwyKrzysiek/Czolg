@@ -128,7 +128,7 @@ int main()
 	for (int z = 0; z < LICZBA_KULEK; z++)
 	{
 		double dl = 0;
-		while (dl < czolg.getLocalBounds().width) //Zmiana na u¿ycie klasy czo³g
+		while (dl < czolg.getLocalBounds().width / 2) //Zmiana na u¿ycie klasy czo³g
 		{
 			int xt = xpos[z] + kulki[z].getRadius(); //Dlaczego dodaje sie promien?
 			int yt = ypos[z] + kulki[z].getRadius();

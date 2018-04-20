@@ -56,7 +56,7 @@ void Czolg::update(const sf::Window& window)
 
 sf::FloatRect Czolg::getLocalBounds() const
 {
-	return  FloatRect{ getPosition(), armata.getSize() };
+	return  FloatRect{ getPosition(), Vector2f(armata.getSize().x, armata.getSize().x) };
 }
 
 const sf::Vector2f& Czolg::getCanonSize() const
