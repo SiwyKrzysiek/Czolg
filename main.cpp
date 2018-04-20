@@ -313,6 +313,10 @@ int main()
 		//rysowanie
 		window.clear();
 		Czolg czolg;
+		czolg.setPosition(300, 300);
+
+		czolg.update(window);
+
 		window.draw(czolg);
 		//window.draw(cialo);
 		//window.draw(armata);
