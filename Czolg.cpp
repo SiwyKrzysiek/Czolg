@@ -10,7 +10,7 @@ cialo(promien, 70),
 srodek(promienSrodka, 60)
 {
 	//Przygotowanie ciala
-	//cialo.setPosition(300 - (0.5*promien), 300 - (0.5*promien));
+	//cialo.setPosition(300 - (0.5*promien), 300 - (0.5*promien)); //Todo Spytaæ Maæka dlaczego tak jest
 	cialo.setPosition(position);
 	cialo.setOrigin(promien, promien);
 	cialo.setFillColor(Color::Red);
@@ -20,7 +20,7 @@ srodek(promienSrodka, 60)
 	//Przygotowanie armaty
 	armata.setFillColor(Color::Blue);
 	armata.setPosition(cialo.getPosition());
-	armata.setOrigin(0, 0.25*promien);
+	armata.setOrigin(0, armata.getSize().y/2.0);
 	armata.setOutlineThickness(-5.0f);
 	armata.setOutlineColor(Color::White);
 
@@ -42,8 +42,7 @@ void Czolg::setPosition(float x, float y)
 
 void Czolg::update(const sf::Window& window)
 {
-	Vector2f mousePosition(Mouse::getPosition(window));
-	Vector2f a = mousePosition - armata.getPosition();
+	Vector2f a = static_cast<Vector2f>(Mouse::getPosition(window)) - armata.getPosition();
 
 	double katLufy = atan2(a.y, a.x) * 180 / M_PI;
 
