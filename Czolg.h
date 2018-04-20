@@ -18,7 +18,10 @@ private:
 public:
 	Czolg(const double promien = 100);
 	void setPosition(float x, float y);
+	const sf::Vector2f& getPosition() const;
 	void update(const sf::Window& window);
+	sf::FloatRect getLocalBounds() const;
+
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

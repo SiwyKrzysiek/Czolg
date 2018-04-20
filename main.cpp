@@ -54,29 +54,31 @@ int main()
 	RenderWindow window(VideoMode(800, 600), "Gra w strzelanie kolorowa kulka", Style::Default, settings);
 	window.setFramerateLimit(60);
 
-	////promien czolgu
-	//int r = 100;
+#if 0
+	//promien czolgu
+	int r = 100;
 
-	////definicje i pparametry czolgu
-	//CircleShape cialo(r, 70);
-	//RectangleShape armata(Vector2f(1.5*r, 0.5*r));
-	//cialo.setPosition(300 - (0.5*r), 300 - (0.5*r));
-	//cialo.setOrigin(r, r);
-	//cialo.setFillColor(Color::Red);
-	//armata.setFillColor(Color::Blue);
-	//armata.setPosition(cialo.getPosition());
-	//armata.setOrigin(0, 0.25*r); //Ustawia srodek armaty w polowie krotszej krawedzi
+	//definicje i pparametry czolgu
+	CircleShape cialo(r, 70);
+	RectangleShape armata(Vector2f(1.5*r, 0.5*r));
+	cialo.setPosition(300 - (0.5*r), 300 - (0.5*r));
+	cialo.setOrigin(r, r);
+	cialo.setFillColor(Color::Red);
+	armata.setFillColor(Color::Blue);
+	armata.setPosition(cialo.getPosition());
+	armata.setOrigin(0, 0.25*r); //Ustawia srodek armaty w polowie krotszej krawedzi
 
-	//CircleShape male;
-	//male.setRadius(0.4*r);
-	//male.setPosition(cialo.getPosition());
-	//male.setOrigin(0.4*r, 0.4*r);
-	//cialo.setOutlineThickness(-5);
-	//cialo.setOutlineColor(Color::White);
-	//armata.setOutlineThickness(-5);
-	//armata.setOutlineColor(Color::White);
-	//male.setOutlineThickness(-5);
-	//male.setOutlineColor(Color::Black);
+	CircleShape male;
+	male.setRadius(0.4*r);
+	male.setPosition(cialo.getPosition());
+	male.setOrigin(0.4*r, 0.4*r);
+	cialo.setOutlineThickness(-5);
+	cialo.setOutlineColor(Color::White);
+	armata.setOutlineThickness(-5);
+	armata.setOutlineColor(Color::White);
+	male.setOutlineThickness(-5);
+	male.setOutlineColor(Color::Black);
+#endif
 
 	Czolg czolg;
 	czolg.setPosition(300, 300);
@@ -126,7 +128,7 @@ int main()
 	for (int z = 0; z < LICZBA_KULEK; z++)
 	{
 		double dl = 0;
-		while (dl < armata.getSize().x)
+		while (dl < czolg.getLocalBounds().width) //Zmiana na u¿ycie klasy czo³g
 		{
 			int xt = xpos[z] + kulki[z].getRadius(); //Dlaczego dodaje sie promien?
 			int yt = ypos[z] + kulki[z].getRadius();
@@ -134,12 +136,12 @@ int main()
 			//dl = pow((cialo.getPosition().x - xt), 2); //pow slabo dziala na intach
 			//dl += pow((cialo.getPosition().y - yt), 2);
 			//dl = sqrt(dl);
-
 			//dl = sqrt((cialo.getPosition().x - xt)*(cialo.getPosition().x - xt) + (cialo.getPosition().y - yt)*(cialo.getPosition().y - yt));
-			dl = rootSumSquared(cialo.getPosition().x - xt, cialo.getPosition().y - yt); //TODO: Liczyc odleglosc mniedzy obiektami
+
+			dl = rootSumSquared(czolg.getPosition().x - xt, czolg.getPosition().y - yt); //TODO: Liczyc odleglosc mniedzy obiektami
 
 			dl -= kulki[z].getRadius(); //Zeby nie wszedl krawedzia na czolg
-			if (dl < armata.getSize().x)
+			if (dl < czolg.getLocalBounds().width)
 			{
 				xpos[z] = rand() % 750;
 				ypos[z] = rand() % 500 + 30;

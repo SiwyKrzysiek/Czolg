@@ -40,6 +40,11 @@ void Czolg::setPosition(float x, float y)
 	srodek.setPosition(position);
 }
 
+const sf::Vector2f& Czolg::getPosition() const
+{
+	return  position;
+}
+
 void Czolg::update(const sf::Window& window)
 {
 	Vector2f a = static_cast<Vector2f>(Mouse::getPosition(window)) - armata.getPosition();
@@ -47,6 +52,11 @@ void Czolg::update(const sf::Window& window)
 	double katLufy = atan2(a.y, a.x) * 180 / M_PI;
 
 	armata.setRotation(katLufy);
+}
+
+sf::FloatRect Czolg::getLocalBounds() const
+{
+	return  FloatRect{ getPosition(), armata.getSize() };
 }
 
 void Czolg::draw(sf::RenderTarget& target, sf::RenderStates states) const
