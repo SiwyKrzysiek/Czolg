@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES //Test
 
 #include <iostream>
 #include <string>
@@ -15,7 +15,7 @@
 using namespace sf;
 using namespace std;
 
-template <typename T>
+template <class T>
 string toString(const T& t)
 {
 	stringstream ss;
