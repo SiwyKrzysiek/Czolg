@@ -54,29 +54,32 @@ int main()
 	RenderWindow window(VideoMode(800, 600), "Gra w strzelanie kolorowa kulka", Style::Default, settings);
 	window.setFramerateLimit(60);
 
-	//promien czolgu
-	int r = 100;
+	////promien czolgu
+	//int r = 100;
 
-	//definicje i pparametry czolgu
-	CircleShape cialo(r, 70);
-	RectangleShape armata(Vector2f(1.5*r, 0.5*r));
-	cialo.setPosition(300 - (0.5*r), 300 - (0.5*r));
-	cialo.setOrigin(r, r);
-	cialo.setFillColor(Color::Red);
-	armata.setFillColor(Color::Blue);
-	armata.setPosition(cialo.getPosition());
-	armata.setOrigin(0, 0.25*r); //Ustawia srodek armaty w polowie krotszej krawedzi
+	////definicje i pparametry czolgu
+	//CircleShape cialo(r, 70);
+	//RectangleShape armata(Vector2f(1.5*r, 0.5*r));
+	//cialo.setPosition(300 - (0.5*r), 300 - (0.5*r));
+	//cialo.setOrigin(r, r);
+	//cialo.setFillColor(Color::Red);
+	//armata.setFillColor(Color::Blue);
+	//armata.setPosition(cialo.getPosition());
+	//armata.setOrigin(0, 0.25*r); //Ustawia srodek armaty w polowie krotszej krawedzi
 
-	CircleShape male;
-	male.setRadius(0.4*r);
-	male.setPosition(cialo.getPosition());
-	male.setOrigin(0.4*r, 0.4*r);
-	cialo.setOutlineThickness(-5);
-	cialo.setOutlineColor(Color::White);
-	armata.setOutlineThickness(-5);
-	armata.setOutlineColor(Color::White);
-	male.setOutlineThickness(-5);
-	male.setOutlineColor(Color::Black);
+	//CircleShape male;
+	//male.setRadius(0.4*r);
+	//male.setPosition(cialo.getPosition());
+	//male.setOrigin(0.4*r, 0.4*r);
+	//cialo.setOutlineThickness(-5);
+	//cialo.setOutlineColor(Color::White);
+	//armata.setOutlineThickness(-5);
+	//armata.setOutlineColor(Color::White);
+	//male.setOutlineThickness(-5);
+	//male.setOutlineColor(Color::Black);
+
+	Czolg czolg;
+	czolg.setPosition(300, 300);
 
 	//ilosc kulek
 	const int LICZBA_KULEK = 10;
@@ -312,8 +315,7 @@ int main()
 
 		//rysowanie
 		window.clear();
-		Czolg czolg;
-		czolg.setPosition(300, 300);
+
 
 		czolg.update(window);
 
