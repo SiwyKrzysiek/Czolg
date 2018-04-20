@@ -1,19 +1,28 @@
 #define _USE_MATH_DEFINES
 
-#include<iostream>
-#include<sstream>
-#include<stdio.h>
-#include<math.h>
-#include<stdlib.h>
-#include<stdio.h>
-#include<string.h>
-#include<time.h>
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sstream>
 #include <SFML/Graphics.hpp>
-#include<sstream>
 #include<vector>
 
 using namespace sf;
 using namespace std;
+
+template <typename T>
+string toString(const T& t)
+{
+	stringstream ss;
+	ss << T;
+	string tmp;
+	ss >> tmp;
+
+	return tmp;
+}
 
 inline double rootSumSquared(int a, int b)
 {
@@ -72,7 +81,7 @@ int main()
 
 	//czcionka i tekst u gory
 	Font font;
-	if (!font.loadFromFile("tahoma.ttf")) //Tu
+	if (!font.loadFromFile("tahoma.ttf"))
 	{
 		cerr << "Popsute" << endl;
 		getchar();
@@ -84,7 +93,7 @@ int main()
 	Text liczba;
 	liczba.setFont(font);
 	liczba.setCharacterSize(28);
-	liczba.setString(ile); //Tu
+	liczba.setString(ile);
 	liczba.setPosition(sf::Vector2f(170, 0));
 	text.setString("Liczba kulek: ");
 	text.setCharacterSize(28);
@@ -192,7 +201,7 @@ int main()
 	pocisk.setOrigin(pocisk.getRadius(), pocisk.getRadius());
 
 	//zmienna pomocniczna
-	int pomc = 0;
+	int pociskLeci = 0;
 
 	//czas
 	Clock clock;
@@ -239,49 +248,53 @@ int main()
 		static Vector2f kierunek;
 
 		//strzal
-		if (pomc == 0 && reload.asSeconds()>3)
+		if (pociskLeci == 0 && reload.asSeconds()>3)
 		{
 			if (Mouse::isButtonPressed(Mouse::Left))
 			{
 				kierunek = Vector2f(cos(atan2(b, a)), sin(atan2(b, a)))*f;
 
 				pocisk.setPosition(armata.getPosition().x + (cos(atan2(b, a))*armata.getSize().x), armata.getPosition().y + (sin(atan2(b, a))*armata.getSize().x));
-				pomc = 1;
+				pociskLeci = 1;
 			}
 		}
-		if (pomc == 1)
+		if (pociskLeci == 1)
 		{
 			pocisk.move(kierunek);
 			clock.restart();
 		}
 
-		//pocisk wychodzi poza lewa krawedz ekranu
-		else if (pocisk.getPosition().x <= pocisk.getRadius())
+		
+		if  (	pocisk.getPosition().x <= -pocisk.getRadius() || //pocisk wychodzi poza lewa krawedz ekranu
+				pocisk.getPosition().y <= pocisk.getRadius() + 30 || //pocisk wychodzi poza gorna krawedz ekranu
+				pocisk.getPosition().y >= window.getSize().y - pocisk.getRadius() || //pocisk wychodzi poza dolna krawedz ekranu
+				pocisk.getPosition().x >= window.getSize().x - pocisk.getRadius() //pocisk wychodzi poza prawa krawedz ekranu
+			)
 		{
-			pocisk.setPosition(-100, -100);
-			pomc = 0;
+			//pocisk.setPosition(-100, -100);
+			pociskLeci = 0;
 		}
 
-		//pocisk wychodzi poza gorna krawedz ekranu
-		else if (pocisk.getPosition().y <= pocisk.getRadius() + 30)
-		{
-			pocisk.setPosition(-100, -100);
-			pomc = 0;
-		}
+		
+		//else if (pocisk.getPosition().y <= pocisk.getRadius() + 30)
+		//{
+		//	pocisk.setPosition(-100, -100);
+		//	pociskLeci = 0;
+		//}
 
-		//pocisk wychodzi poza dolna krawedz ekranu
-		else if (pocisk.getPosition().y >= window.getSize().y - pocisk.getRadius())
-		{
-			pocisk.setPosition(-100, -100);
-			pomc = 0;
-		}
+		//
+		//else if (pocisk.getPosition().y >= window.getSize().y - pocisk.getRadius())
+		//{
+		//	pocisk.setPosition(-100, -100);
+		//	pociskLeci = 0;
+		//}
 
-		//pocisk wychodzi poza prawa krawedz ekranu
-		else if (pocisk.getPosition().x >= window.getSize().x - pocisk.getRadius())
-		{
-			pocisk.setPosition(-100, -100);
-			pomc = 0;
-		}
+		////pocisk wychodzi poza prawa krawedz ekranu
+		//else if (pocisk.getPosition().x >= window.getSize().x - pocisk.getRadius())
+		//{
+		//	pocisk.setPosition(-100, -100);
+		//	pociskLeci = 0;
+		//}
 
 		//pocisk uderza w cel
 		for (int z = 0; z < LICZBA_KULEK; z++)
@@ -290,7 +303,7 @@ int main()
 			{
 				kulki[z].setPosition(2000, 2000);
 				pocisk.setPosition(-100, -100);
-				pomc = 0;
+				pociskLeci = 0;
 				numery[z].setPosition(2000, 2000);
 			}
 		}
