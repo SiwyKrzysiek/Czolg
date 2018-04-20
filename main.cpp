@@ -13,11 +13,11 @@
 using namespace sf;
 using namespace std;
 
-template <typename T>
+template <class T>
 string toString(const T& t)
 {
 	stringstream ss;
-	ss << T;
+	ss << t;
 	string tmp;
 	ss >> tmp;
 
