@@ -260,8 +260,10 @@ int main()
 			if (Mouse::isButtonPressed(Mouse::Left))
 			{
 				kierunek = Vector2f(cos(atan2(b, a)), sin(atan2(b, a)))*f;
+				kierunek = Vector2f(cos(czolg.getCanonAngle()), sin(czolg.getCanonAngle()))*f;
 
-				pocisk.setPosition(armata.getPosition().x + (cos(atan2(b, a))*armata.getSize().x), armata.getPosition().y + (sin(atan2(b, a))*armata.getSize().x));
+				//pocisk.setPosition(armata.getPosition().x + (cos(czolg.getCanonAngle())*armata.getSize().x), armata.getPosition().y + (sin(czolg.getCanonAngle())*armata.getSize().x));
+				pocisk.setPosition(czolg.getMuzzlePosition());
 				pociskLeci = 1;
 			}
 		}
@@ -278,7 +280,7 @@ int main()
 				pocisk.getPosition().x >= window.getSize().x - pocisk.getRadius() //pocisk wychodzi poza prawa krawedz ekranu
 			)
 		{
-			//pocisk.setPosition(-100, -100);
+			pocisk.setPosition(-100, -100);
 			pociskLeci = 0;
 		}
 
