@@ -54,7 +54,7 @@ int main()
 	RenderWindow window(VideoMode(800, 600), "Gra w strzelanie kolorowa kulka", Style::Default, settings);
 	window.setFramerateLimit(60);
 
-#if 1
+#if 0
 	//promien czolgu
 	int r = 100;
 
@@ -221,12 +221,11 @@ int main()
 		//czas przeladowania
 		Time reload = clock.getElapsedTime();
 
-		//obrot lufy
-		Vector2f position = Vector2f(Mouse::getPosition(window));
-		float a = position.x - armata.getPosition().x, b = position.y - armata.getPosition().y;
-		float deg = atan2(b, a) * 180 / M_PI; //Policzenie kata lufy
-
-		armata.setRotation(deg);
+		////obrot lufy
+		//Vector2f position = Vector2f(Mouse::getPosition(window));
+		//float a = position.x - armata.getPosition().x, b = position.y - armata.getPosition().y;
+		//float deg = atan2(b, a) * 180 / M_PI; //Policzenie kata lufy
+		//armata.setRotation(deg);
 
 		//zamkniecie okna
 		sf::Event event;
@@ -239,7 +238,7 @@ int main()
 		}
 
 		//wypisanie kata i czasu przeladowania
-		std::cout << deg << "\t\t";
+		std::cout << czolg.getCanonAngle() * 180 / M_PI << "\t\t";
 		if (reload.asSeconds() > 3)
 		{
 			std::cout << "Do strzalu: 0\n";
@@ -259,7 +258,7 @@ int main()
 		{
 			if (Mouse::isButtonPressed(Mouse::Left))
 			{
-				kierunek = Vector2f(cos(atan2(b, a)), sin(atan2(b, a)))*f;
+				//kierunek = Vector2f(cos(atan2(b, a)), sin(atan2(b, a)))*f;
 				kierunek = Vector2f(cos(czolg.getCanonAngle()), sin(czolg.getCanonAngle()))*f;
 
 				//pocisk.setPosition(armata.getPosition().x + (cos(czolg.getCanonAngle())*armata.getSize().x), armata.getPosition().y + (sin(czolg.getCanonAngle())*armata.getSize().x));
@@ -284,27 +283,6 @@ int main()
 			pociskLeci = 0;
 		}
 
-		
-		//else if (pocisk.getPosition().y <= pocisk.getRadius() + 30)
-		//{
-		//	pocisk.setPosition(-100, -100);
-		//	pociskLeci = 0;
-		//}
-
-		//
-		//else if (pocisk.getPosition().y >= window.getSize().y - pocisk.getRadius())
-		//{
-		//	pocisk.setPosition(-100, -100);
-		//	pociskLeci = 0;
-		//}
-
-		////pocisk wychodzi poza prawa krawedz ekranu
-		//else if (pocisk.getPosition().x >= window.getSize().x - pocisk.getRadius())
-		//{
-		//	pocisk.setPosition(-100, -100);
-		//	pociskLeci = 0;
-		//}
-
 		//pocisk uderza w cel
 		for (int z = 0; z < LICZBA_KULEK; z++)
 		{
@@ -319,7 +297,6 @@ int main()
 
 		//rysowanie
 		window.clear();
-
 
 		czolg.update(window);
 
