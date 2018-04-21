@@ -11,42 +11,14 @@
 #include<vector>
 
 #include "Czolg.h"
+#include "Utilities.h"
 
 using namespace sf;
 using namespace std;
 
-template <class T>
-string toString(const T& t)
-{
-	stringstream ss;
-	ss << t;
-	string tmp;
-	ss >> tmp;
-
-	return tmp;
-}
-
-inline double rootSumSquared(int a, int b)
-{
-	return sqrt(a*a + b*b);
-}
-
-inline Color randomColor()
-{
-	return Color(rand() % 250 + 5, rand() % 250 + 5, rand() % 250 + 5);
-}
-
-double distance (Transformable a, Transformable b)
-{
-	return rootSumSquared(a.getPosition().x-b.getPosition().x, a.getPosition().y-b.getPosition().y);
-}
-
-
 int main()
 {
-
-
-	srand(time(NULL));
+	srand(time(nullptr));
 
 	//render i ustawienia
 	ContextSettings settings;
@@ -90,7 +62,7 @@ int main()
 	Font font;
 	if (!font.loadFromFile("tahoma.ttf"))
 	{
-		cerr << "Popsute" << endl;
+		cerr << "Nie udalo sie wczytac czcionki" << endl;
 		getchar();
 		exit(1);
 	}
@@ -228,7 +200,7 @@ int main()
 		//armata.setRotation(deg);
 
 		//zamkniecie okna
-		sf::Event event;
+		Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)

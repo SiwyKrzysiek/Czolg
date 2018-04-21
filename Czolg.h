@@ -22,7 +22,7 @@ public:
 	const sf::Vector2f& getPosition() const;
 	void update(const sf::Window& window);
 	double getCanonAngle() const;
-	const sf::Vector2f getMuzzlePosition() const;
+	sf::Vector2f getMuzzlePosition() const;
 	sf::FloatRect getLocalBounds() const;
 	const sf::Vector2f& getCanonSize() const;
 

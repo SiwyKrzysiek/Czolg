@@ -19,14 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cel.cpp" />
     <ClCompile Include="Czolg.cpp" />
     <ClCompile Include="main.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cel.h" />
     <ClInclude Include="Czolg.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -63,9 +63,9 @@ double Czolg::getCanonAngle() const
 /**
  * \brief Zwraca pozycje wylotu lufy czo³gu
  */
-const sf::Vector2f Czolg::getMuzzlePosition() const
+sf::Vector2f Czolg::getMuzzlePosition() const
 {
-	return Vector2f(position + Vector2f(cos(katArmaty), sin(katArmaty))*armata.getSize().x );
+	return Vector2f{position + Vector2f(cos(katArmaty), sin(katArmaty))*armata.getSize().x };
 }
 
 sf::FloatRect Czolg::getLocalBounds() const
