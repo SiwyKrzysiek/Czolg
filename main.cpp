@@ -141,7 +141,7 @@ int main()
 			dl = rootSumSquared(czolg.getPosition().x - xt, czolg.getPosition().y - yt); //TODO: Liczyc odleglosc mniedzy obiektami
 
 			dl -= kulki[z].getRadius(); //Zeby nie wszedl krawedzia na czolg
-			if (dl < czolg.getLocalBounds().width)
+			if (dl < czolg.getLocalBounds().width / 2)
 			{
 				xpos[z] = rand() % 750;
 				ypos[z] = rand() % 500 + 30;

@@ -10,6 +10,7 @@ class Czolg : public sf::Drawable //ToDo zaimplementowaæ czas prze³adowania
 private:
 	const double promien;
 	const double promienSrodka;
+	double katLufy; //K¹t lufy w RADIANACH
 	sf::Vector2f position;
 	sf::RectangleShape armata;
 	sf::CircleShape cialo;

@@ -5,6 +5,7 @@ using namespace sf;
 Czolg::Czolg(const double promien) : position(0.f, 0.f),
 promien(promien),
 promienSrodka(0.4*promien),
+katLufy(0.0),
 armata(Vector2f(1.5*promien, 0.5*promien)),
 cialo(promien, 70),
 srodek(promienSrodka, 60)
@@ -49,14 +50,14 @@ void Czolg::update(const sf::Window& window)
 {
 	Vector2f a = static_cast<Vector2f>(Mouse::getPosition(window)) - armata.getPosition();
 
-	double katLufy = atan2(a.y, a.x) * 180 / M_PI;
+	katLufy = atan2(a.y, a.x);
 
-	armata.setRotation(katLufy);
+	armata.setRotation(katLufy * 180 / M_PI);
 }
 
 sf::FloatRect Czolg::getLocalBounds() const
 {
-	return  FloatRect{ getPosition(), Vector2f(armata.getSize().x, armata.getSize().x) };
+	return  FloatRect{ getPosition(), Vector2f(armata.getSize().x, armata.getSize().x)*2.0f };
 }
 
 const sf::Vector2f& Czolg::getCanonSize() const
