@@ -12,6 +12,7 @@
 
 #include "Czolg.h"
 #include "Utilities.h"
+#include "Cel.h"
 
 using namespace sf;
 using namespace std;
@@ -273,6 +274,7 @@ int main()
 		czolg.update(window);
 
 		window.draw(czolg);
+
 		//window.draw(cialo);
 		//window.draw(armata);
 		//window.draw(male);
