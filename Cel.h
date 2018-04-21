@@ -11,4 +11,3 @@ private:
 public:
 	Cel();
 };
-

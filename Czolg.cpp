@@ -34,7 +34,7 @@ srodek(promienSrodka, 60)
 
 void Czolg::setPosition(float x, float y)
 {
-	position = Vector2f(x - 0.5*promien, y - 0.5*promien);
+	position = Vector2f(x, y);
 
 	cialo.setPosition(position);
 	armata.setPosition(position);
