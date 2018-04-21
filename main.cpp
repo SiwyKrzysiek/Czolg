@@ -27,6 +27,14 @@ int main()
 	RenderWindow window(VideoMode(800, 600), "Gra w strzelanie kolorowa kulka", Style::Default, settings);
 	window.setFramerateLimit(60);
 
+	Font font;
+	if (!font.loadFromFile("tahoma.ttf"))
+	{
+		cerr << "Nie udalo sie wczytac czcionki" << endl;
+		getchar();
+		exit(1);
+	}
+
 #if 0
 	//promien czolgu
 	int r = 100;
@@ -56,17 +64,14 @@ int main()
 	Czolg czolg;
 	czolg.setPosition(300, 300);
 
+	Cel celTestowy(font, Losowa(0, 31));
+	celTestowy.setPosition(200, 100);
+
 	//ilosc kulek
 	const int LICZBA_KULEK = 10;
 
 	//czcionka i tekst u gory
-	Font font;
-	if (!font.loadFromFile("tahoma.ttf"))
-	{
-		cerr << "Nie udalo sie wczytac czcionki" << endl;
-		getchar();
-		exit(1);
-	}
+
 	Text text;
 	text.setFont(font);
 	string ile = to_string(LICZBA_KULEK);
@@ -274,6 +279,7 @@ int main()
 		czolg.update(window);
 
 		window.draw(czolg);
+		window.draw(celTestowy);
 
 		//window.draw(cialo);
 		//window.draw(armata);
