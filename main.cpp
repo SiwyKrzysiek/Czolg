@@ -221,12 +221,11 @@ int main()
 		//czas przeladowania
 		Time reload = clock.getElapsedTime();
 
-		//obrot lufy
-		Vector2f position = Vector2f(Mouse::getPosition(window));
-		float a = position.x - armata.getPosition().x, b = position.y - armata.getPosition().y;
-		float deg = atan2(b, a) * 180 / M_PI; //Policzenie kata lufy
-
-		armata.setRotation(deg);
+		////obrot lufy
+		//Vector2f position = Vector2f(Mouse::getPosition(window));
+		//float a = position.x - armata.getPosition().x, b = position.y - armata.getPosition().y;
+		//float deg = atan2(b, a) * 180 / M_PI; //Policzenie kata lufy
+		//armata.setRotation(deg);
 
 		//zamkniecie okna
 		sf::Event event;
