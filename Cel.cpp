@@ -62,6 +62,11 @@ sf::Vector2f Cel::getPosition() const
 	return Transformable::getPosition();
 }
 
+bool Cel::intersects(const CircleShape& inny)
+{
+	
+}
+
 void Cel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	const_cast<Cel*>(this)->update();

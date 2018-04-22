@@ -6,7 +6,7 @@
 #include "Utilities.h"
 #include "OkraglyKsztalt.h"
 
-class Cel : public sf::Drawable, public sf::Transformable, public OkraglyKsztalt
+class Cel : public sf::Drawable, public sf::Transformable, public OkraglyKsztalt //ToDo Dodaæ sprawdzanie czy nachodzi na OkraglyKsztalt
 {
 private:
 	sf::CircleShape ksztalt;
@@ -21,6 +21,7 @@ public:
 	sf::FloatRect getGlobalBounds() const;
 	double getRadius() const override;
 	sf::Vector2f getPosition() const override;
+	bool intersects(const sf::CircleShape& inny);
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
