@@ -21,7 +21,7 @@ public:
 	sf::FloatRect getGlobalBounds() const;
 	double getRadius() const override;
 	sf::Vector2f getPosition() const override;
-	bool intersects(const sf::CircleShape& inny);
+	bool intersects(const OkraglyKsztalt& inny);
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

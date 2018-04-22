@@ -68,6 +68,7 @@ int main()
 	Cel celTestowy(font, Losowa(0, 31));
 	celTestowy.setPosition(200, 100);
 
+	//ToDo Przejsc z kulek na Cele
 	//ilosc kulek
 	const int LICZBA_KULEK = 10;
 
