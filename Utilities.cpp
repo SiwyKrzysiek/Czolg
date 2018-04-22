@@ -32,7 +32,7 @@ double distance(const Transformable& a, const Transformable& b)
 
 Vector2i randomPointInGamplayArea()
 {
-	return Vector2i{ rand() % (SCREEN_WIDTH - 50), (rand() % (SCREEN_HEIGHT - 100)) + 30 };
+	return Vector2i{ rand() % (SCREEN_WIDTH - 50), (rand() % (SCREEN_HEIGHT - 30)) + 30 };
 }
 
  bool intersect(const OkraglyKsztalt& a, const OkraglyKsztalt& b)
@@ -52,4 +52,13 @@ Vector2i randomPointInGamplayArea()
 int Losowa(int mini, int maxi)
 {
 	return mini + rand() % (maxi - mini);
+}
+
+/**
+ * \brief Zwraca losowa liczbe zmiennoprzcinkowa z przedzialu [mini, maxi)
+ */
+double LosowyDouble(double mini, double maxi)
+{
+	double f = static_cast<double>(rand()) / (RAND_MAX+1.0);
+	return mini + f * (maxi - mini);
 }

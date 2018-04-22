@@ -138,20 +138,15 @@ int main()
 	for (int z = 0; z < LICZBA_KULEK; z++)
 	{
 		double dl = 0;
-		while (dl < czolg.getGlobalBounds().width / 2) //Zmiana na u¿ycie klasy czo³g
+		while (dl < czolg.getRadius()) //Zmiana na u¿ycie klasy czo³g
 		{
 			int xt = xpos[z] + kulki[z].getRadius(); //Dlaczego dodaje sie promien?
 			int yt = ypos[z] + kulki[z].getRadius();
 
-			//dl = pow((cialo.getPosition().x - xt), 2); //pow slabo dziala na intach
-			//dl += pow((cialo.getPosition().y - yt), 2);
-			//dl = sqrt(dl);
-			//dl = sqrt((cialo.getPosition().x - xt)*(cialo.getPosition().x - xt) + (cialo.getPosition().y - yt)*(cialo.getPosition().y - yt));
-
 			dl = rootSumSquared(czolg.getPosition().x - xt, czolg.getPosition().y - yt);
 
 			dl -= kulki[z].getRadius(); //Zeby nie wszedl krawedzia na czolg
-			if (dl < czolg.getGlobalBounds().width / 2)
+			if (dl < czolg.getRadius())
 			{
 				xpos[z] = rand() % 750;
 				ypos[z] = rand() % 500 + 30;

@@ -62,22 +62,19 @@ sf::Vector2f Cel::getPosition() const
 	return Transformable::getPosition();
 }
 
-bool Cel::intersects(const OkraglyKsztalt& inny)
+bool Cel::intersects(const OkraglyKsztalt& inny) const
 {
 	return intersect(*this, inny);
+}
+
+Vector2f Cel::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
+{
+
 }
 
 void Cel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	const_cast<Cel*>(this)->update();
-
-	//Font font;
-	//font.loadFromFile("tahoma.ttf");
-	//Text text("Test", font, 10);
-	//text.setPosition(100, 100);
-	//text.setFillColor(Color::Yellow);
-	//
-	//target.draw(text);
 
 	target.draw(ksztalt, states);
 	target.draw(numer, states);
