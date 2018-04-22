@@ -104,7 +104,7 @@ int main()
 
 		for (int i=0; !prawdlowaPozycja && i<MAX_FIT_TRIES; i++)
 		{
-			nowyCel.setPosition(static_cast<Vector2f>(randomPointInGamplayArea()));
+			nowyCel.setPosition(nowyCel.generatePosiblePlacment());
 			prawdlowaPozycja = true;
 
 			if (nowyCel.intersects(czolg))

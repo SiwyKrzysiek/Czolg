@@ -55,10 +55,10 @@ int Losowa(int mini, int maxi)
 }
 
 /**
- * \brief Zwraca losowa liczbe zmiennoprzcinkowa z przedzialu [mini, maxi)
+ * \brief Zwraca losowa liczbe zmiennoprzcinkowa z przedzialu [mini, maxi]
  */
-double LosowyDouble(double mini, double maxi)
+double losowyDouble(double mini, double maxi)
 {
-	double f = static_cast<double>(rand()) / (RAND_MAX+1.0);
+	double f = static_cast<double>(rand()) / RAND_MAX;
 	return mini + f * (maxi - mini);
 }

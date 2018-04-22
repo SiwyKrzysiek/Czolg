@@ -69,7 +69,10 @@ bool Cel::intersects(const OkraglyKsztalt& inny) const
 
 Vector2f Cel::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
 {
+	double x = (SCREEN_WIDTH - GAMEPLAY_AREA_WIDTH) + losowyDouble(ksztalt.getRadius(), GAMEPLAY_AREA_WIDTH - ksztalt.getRadius());
+	double y = (SCREEN_HEIGHT - GAMEPLAY_AREA_HEIGHT) + losowyDouble(ksztalt.getRadius(), GAMEPLAY_AREA_HEIGHT - ksztalt.getRadius());
 
+	return Vector2f(x, y);
 }
 
 void Cel::draw(sf::RenderTarget& target, sf::RenderStates states) const
