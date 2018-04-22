@@ -5,11 +5,26 @@
 #include "OkraglyKsztalt.h"
 #include "Stale.h"
 
+/**
+ * \brief Zwraca losowt kolor nadajacy sie do pokolorowania Celu
+ */
 sf::Color randomColor();
 double rootSumSquared(int a, int b);
 double rootSumSquared(double a, double b);
+/**
+ * \brief Liczy odleglosc miedzy dwoma punktammi
+ * \param a puntk a 
+ * \param b punkt b
+ */
 double distance(const sf::Vector2f& a, const sf::Vector2f& b);
 double distance(const sf::Transformable& a, const sf::Transformable& b);
 int Losowa(int mini, int maxi);
+/**
+ * \brief Zwraca losowy punkt nadajacy sie na postawienie celu
+ * \return 
+ */
 sf::Vector2i randomPointInGamplayArea();
+/**
+ * \brief Sprawdza czy dwa OkragleKsztalty na siebie nachodza
+ */
 bool intersect(const OkraglyKsztalt& a, const OkraglyKsztalt& b);
