@@ -66,13 +66,10 @@ int main()
 	Czolg czolg;
 	czolg.setPosition(300, 300);
 
-	Cel celTestowy(font, Losowa(0, 31));
-	celTestowy.setPosition(200, 100);
-
 	//ToDo Przejsc z kulek na Cele
 	//ilosc kulek
 	const int LICZBA_KULEK = 10;
-	const int LICZBA_CELI = 10;
+	const int LICZBA_CELI = 50;
 
 	//czcionka i tekst u gory
 
@@ -99,11 +96,34 @@ int main()
 	}
 
 	//PRZEJSCIE NA CELE!
-	list<Cel> cele;
-	for (int i = 0; i < LICZBA_CELI; i++)
+	list<Cel> cele; //ToDo Zrobic by cle nie wystawaly poza plansze
+	for (int i = 0; i < LICZBA_CELI; i++) //ToDo Zamienic na funkcje
 	{
-		Cel cel(font, i + 1);
+		Cel nowyCel(font, i + 1);
+		bool prawdlowaPozycja = false;
 
+		for (int i=0; !prawdlowaPozycja && i<MAX_FIT_TRIES; i++)
+		{
+			nowyCel.setPosition(static_cast<Vector2f>(randomPointInGamplayArea()));
+			prawdlowaPozycja = true;
+
+			if (nowyCel.intersects(czolg))
+			{
+				prawdlowaPozycja = false;
+				continue;
+			}
+			for (const Cel& cel : cele)
+			{
+				if (nowyCel.intersects(cel))
+				{
+					prawdlowaPozycja = false;
+					break;
+				}
+			}
+		}
+		if (!prawdlowaPozycja) break;
+
+		cele.push_back(move(nowyCel));
 	}
 
 	//losowanie pozycji kulek
@@ -293,16 +313,21 @@ int main()
 		czolg.update(window);
 
 		window.draw(czolg);
-		window.draw(celTestowy);
 
 		//window.draw(cialo);
 		//window.draw(armata);
 		//window.draw(male);
-		for (int z = 0; z < LICZBA_KULEK; z++)
+		//for (int z = 0; z < LICZBA_KULEK; z++)
+		//{
+		//	window.draw(kulki[z]);
+		//	window.draw(numery[z]);
+		//}
+
+		for (const Cel& cel : cele)
 		{
-			window.draw(kulki[z]);
-			window.draw(numery[z]);
+			window.draw(cel);
 		}
+
 		window.draw(pocisk);
 		window.draw(text);
 		window.draw(liczba);
