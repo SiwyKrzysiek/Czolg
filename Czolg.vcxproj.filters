@@ -41,5 +41,8 @@
     <ClInclude Include="Stale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OkraglyKsztalt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -47,6 +47,21 @@ void Cel::update()
 	numer.setPosition(getPosition());
 }
 
+sf::FloatRect Cel::getGlobalBounds() const
+{
+	return FloatRect{ getPosition(), Vector2f(2.0*ksztalt.getRadius(), 2.0*ksztalt.getRadius()) };
+}
+
+double Cel::getRadius()const
+{
+	return ksztalt.getRadius();
+}
+
+sf::Vector2f Cel::getPosition() const
+{
+	return Transformable::getPosition();
+}
+
 void Cel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	const_cast<Cel*>(this)->update();

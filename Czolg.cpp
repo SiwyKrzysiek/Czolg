@@ -2,8 +2,8 @@
 
 using namespace sf;
 
-Czolg::Czolg(const double promien) : position(0.f, 0.f),
-promien(promien),
+Czolg::Czolg(const double promien) : pozycja(0.f, 0.f),
+promienCiala(promien),
 promienSrodka(0.4*promien),
 katArmaty(0.0),
 armata(Vector2f(1.5*promien, 0.5*promien)),
@@ -11,8 +11,8 @@ cialo(promien, 70),
 srodek(promienSrodka, 60)
 {
 	//Przygotowanie ciala
-	//cialo.setPosition(300 - (0.5*promien), 300 - (0.5*promien)); //Todo Spytaæ Maæka dlaczego tak jest
-	cialo.setPosition(position);
+	//cialo.setPosition(300 - (0.5*promienCiala), 300 - (0.5*promienCiala)); //Todo Spytaæ Maæka dlaczego tak jest
+	cialo.setPosition(pozycja);
 	cialo.setOrigin(promien, promien);
 	cialo.setFillColor(Color::Red);
 	cialo.setOutlineThickness(-5.0f);
@@ -34,16 +34,16 @@ srodek(promienSrodka, 60)
 
 void Czolg::setPosition(float x, float y)
 {
-	position = Vector2f(x, y);
+	pozycja = Vector2f(x, y);
 
-	cialo.setPosition(position);
-	armata.setPosition(position);
-	srodek.setPosition(position);
+	cialo.setPosition(pozycja);
+	armata.setPosition(pozycja);
+	srodek.setPosition(pozycja);
 }
 
-const sf::Vector2f& Czolg::getPosition() const
+sf::Vector2f Czolg::getPosition() const
 {
-	return  position;
+	return  pozycja;
 }
 
 void Czolg::update(const sf::Window& window)
@@ -65,10 +65,10 @@ double Czolg::getCanonAngle() const
  */
 sf::Vector2f Czolg::getMuzzlePosition() const
 {
-	return Vector2f{position + Vector2f(cos(katArmaty), sin(katArmaty))*armata.getSize().x };
+	return Vector2f{pozycja + Vector2f(cos(katArmaty), sin(katArmaty))*armata.getSize().x };
 }
 
-sf::FloatRect Czolg::getLocalBounds() const
+sf::FloatRect Czolg::getGlobalBounds() const
 {
 	return  FloatRect{ getPosition(), Vector2f(armata.getSize().x, armata.getSize().x)*2.0f };
 }
@@ -76,6 +76,11 @@ sf::FloatRect Czolg::getLocalBounds() const
 const sf::Vector2f& Czolg::getCanonSize() const
 {
 	return armata.getSize();
+}
+
+double Czolg::getRadius() const
+{
+	return armata.getSize().x;
 }
 
 void Czolg::draw(sf::RenderTarget& target, sf::RenderStates states) const

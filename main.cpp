@@ -107,7 +107,7 @@ int main()
 	for (int z = 0; z < LICZBA_KULEK; z++)
 	{
 		double dl = 0;
-		while (dl < czolg.getLocalBounds().width / 2) //Zmiana na u¿ycie klasy czo³g
+		while (dl < czolg.getGlobalBounds().width / 2) //Zmiana na u¿ycie klasy czo³g
 		{
 			int xt = xpos[z] + kulki[z].getRadius(); //Dlaczego dodaje sie promien?
 			int yt = ypos[z] + kulki[z].getRadius();
@@ -120,7 +120,7 @@ int main()
 			dl = rootSumSquared(czolg.getPosition().x - xt, czolg.getPosition().y - yt); //TODO: Liczyc odleglosc mniedzy obiektami
 
 			dl -= kulki[z].getRadius(); //Zeby nie wszedl krawedzia na czolg
-			if (dl < czolg.getLocalBounds().width / 2)
+			if (dl < czolg.getGlobalBounds().width / 2)
 			{
 				xpos[z] = rand() % 750;
 				ypos[z] = rand() % 500 + 30;
