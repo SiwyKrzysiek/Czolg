@@ -70,7 +70,7 @@ int main()
 	//ToDo Przejsc z kulek na Cele
 	//ilosc kulek
 	const int LICZBA_KULEK = 10;
-	const int LICZBA_CELI = 50;
+	const int LICZBA_CELI = 5;
 
 	//czcionka i tekst u gory
 
@@ -308,7 +308,24 @@ int main()
 		czolg.update(window);
 		for (Pocisk& pocisk : pociski)
 		{
+			bool uciekamy = false;
+
 			if (pociski.empty()) break;
+
+			for (Cel& cel : cele)
+			{
+				if (cele.empty()) break;
+
+				if (pocisk.intersects(cel))
+				{
+					pociski.remove(pocisk);
+					cele.remove(cel);
+
+					uciekamy = true;
+					break;
+				}
+			}
+			if (uciekamy) continue;
 
 			if (pocisk.pozaEkranem())
 			{

@@ -26,6 +26,7 @@ public:
 	 * \brief Zwraca punkt w obszarze rozgrywki, w ktorym moznaby postawic cel, tak aby nie wystawal poza opszar
 	 */
 	sf::Vector2f generatePosiblePlacment() const;
+	bool operator==(const Cel& cel) const;
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

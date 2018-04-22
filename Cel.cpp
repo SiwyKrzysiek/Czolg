@@ -75,6 +75,15 @@ Vector2f Cel::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
 	return Vector2f(x, y);
 }
 
+bool Cel::operator==(const Cel& cel) const
+{
+	return (
+		cel.numer.getString() == numer.getString() &&
+		cel.getPosition() == getPosition() &&
+		cel.getRadius() == getRadius()
+		);
+}
+
 void Cel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	const_cast<Cel*>(this)->update();
