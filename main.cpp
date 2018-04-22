@@ -218,20 +218,15 @@ int main()
 
 	//czas
 	Clock clock;
-	//Time reload;
 
+	//Przejscie na nowe pociski
+	list<Pocisk> pociski;
 
 	//otwiera sie okienko
 	while (window.isOpen())
 	{
 		//czas przeladowania
 		Time reload = clock.getElapsedTime();
-
-		////obrot lufy
-		//Vector2f position = Vector2f(Mouse::getPosition(window));
-		//float a = position.x - armata.getPosition().x, b = position.y - armata.getPosition().y;
-		//float deg = atan2(b, a) * 180 / M_PI; //Policzenie kata lufy
-		//armata.setRotation(deg);
 
 		//zamkniecie okna
 		Event event;
@@ -256,6 +251,12 @@ int main()
 		}
 #endif
 
+		//Nowa wersja strzalu
+		if (Mouse::isButtonPressed(Mouse::Left))
+		{
+			czolg.strzel(pociski);
+		}
+
 		//kierunek i wektor strzalu
 		float f = 10; //Predkosc pocisku
 		//Vector2f kierunek = Vector2f(cos(atan2(b, a))*armata.getSize().x, sin(atan2(b, a))*armata.getSize().x)*f;
@@ -266,10 +267,8 @@ int main()
 		{
 			if (Mouse::isButtonPressed(Mouse::Left))
 			{
-				//kierunek = Vector2f(cos(atan2(b, a)), sin(atan2(b, a)))*f;
 				kierunek = Vector2f(cos(czolg.getCanonAngle()), sin(czolg.getCanonAngle()))*f;
-
-				//pocisk.setPosition(armata.getPosition().x + (cos(czolg.getCanonAngle())*armata.getSize().x), armata.getPosition().y + (sin(czolg.getCanonAngle())*armata.getSize().x));
+				
 				pocisk.setPosition(czolg.getMuzzlePosition());
 				pociskLeci = 1;
 			}
@@ -307,6 +306,18 @@ int main()
 		window.clear();
 
 		czolg.update(window);
+		for (Pocisk& pocisk : pociski)
+		{
+			if (pociski.empty()) break;
+
+			if (pocisk.pozaEkranem())
+			{
+				pociski.remove(pocisk);
+				continue;
+			}
+
+			pocisk.update();
+		}
 
 		window.draw(czolg);
 
@@ -320,11 +331,11 @@ int main()
 		//}
 
 		for (const Cel& cel : cele)
-		{
 			window.draw(cel);
-		}
+		for (const Pocisk& pocisk : pociski)
+			window.draw(pocisk);
 
-		window.draw(pocisk);
+		//window.draw(pocisk);
 		window.draw(text);
 		window.draw(liczba);
 		window.draw(linia);

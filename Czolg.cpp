@@ -1,4 +1,5 @@
 #include "Czolg.h"
+#include <complex>
 
 using namespace sf;
 
@@ -6,12 +7,12 @@ Czolg::Czolg(const double promien) : pozycja(0.f, 0.f),
 promienCiala(promien),
 promienSrodka(0.4*promien),
 katArmaty(0.0),
+przeladowanie(0.0),
 armata(Vector2f(1.5*promien, 0.5*promien)),
 cialo(promien, 70),
 srodek(promienSrodka, 60)
 {
 	//Przygotowanie ciala
-	//cialo.setPosition(300 - (0.5*promienCiala), 300 - (0.5*promienCiala)); //Todo Spytaæ Maæka dlaczego tak jest
 	cialo.setPosition(pozycja);
 	cialo.setOrigin(promien, promien);
 	cialo.setFillColor(Color::Red);
@@ -51,8 +52,10 @@ void Czolg::update(const sf::Window& window)
 	Vector2f a = static_cast<Vector2f>(Mouse::getPosition(window)) - armata.getPosition();
 
 	katArmaty = atan2(a.y, a.x);
-
 	armata.setRotation(katArmaty * 180 / M_PI);
+
+	if (przeladowanie > 0.0)
+		przeladowanie -= zegar.restart().asSeconds(); //Zwraca czas jaki uplynal i resetuje zegar
 }
 
 double Czolg::getCanonAngle() const
@@ -81,6 +84,18 @@ const sf::Vector2f& Czolg::getCanonSize() const
 double Czolg::getRadius() const
 {
 	return armata.getSize().x;
+}
+
+void Czolg::strzel(std::list<Pocisk>& pociski)
+{
+	if (przeladowanie > 0.0) 
+		return;
+
+	Vector2f kierunek(std::cos(getCanonAngle()), std::sin(getCanonAngle())); //Wektor jednostkowy w kierunku lufy
+	pociski.emplace_back(getMuzzlePosition(), getCanonSize().y / 5, kierunek * static_cast<float>(PREDKOSC_POCISKU));
+
+	przeladowanie = CZAS_PRZELADOWANIA_W_SEKUNDACH;
+	zegar.restart();
 }
 
 void Czolg::draw(sf::RenderTarget& target, sf::RenderStates states) const

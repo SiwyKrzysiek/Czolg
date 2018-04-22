@@ -17,6 +17,26 @@ void Pocisk::update()
 	ksztalt.setPosition(getPosition());
 }
 
+bool Pocisk::pozaEkranem() const
+{
+	return (
+		getPosition().x <= getRadius() || //pocisk wychodzi poza lewa krawedz ekranu
+		getPosition().y <= getRadius() + SCREEN_HEIGHT - GAMEPLAY_AREA_HEIGHT || //pocisk wychodzi poza gorna krawedz ekranu
+		getPosition().y >= SCREEN_HEIGHT - getRadius() || //pocisk wychodzi poza dolna krawedz ekranu
+		getPosition().x >= GAMEPLAY_AREA_WIDTH - getRadius() //pocisk wychodzi poza prawa krawedz ekranu
+		);
+}
+
+bool Pocisk::operator==(const Pocisk& pocisk) const
+{
+	return (
+		pocisk.getPosition() == getPosition() &&
+		pocisk.getRadius() == getRadius() &&
+		pocisk.predkosc == predkosc
+		);
+
+}
+
 bool Pocisk::intersects(const OkraglyKsztalt& inny) const
 {
 	return intersect(*this, inny);
