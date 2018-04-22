@@ -5,6 +5,12 @@ using namespace sf;
 void Pocisk::update()
 {
 	move(predkosc);
+	ksztalt.setPosition(getPosition());
+}
+
+bool Pocisk::intersects(const OkraglyKsztalt& inny) const
+{
+	return intersect(*this, inny);
 }
 
 double Pocisk::getRadius() const
