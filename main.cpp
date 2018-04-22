@@ -67,16 +67,12 @@ int main()
 	Czolg czolg;
 	czolg.setPosition(300, 300);
 
-	//ToDo Przejsc z kulek na Cele
-	//ilosc kulek
-	const int LICZBA_KULEK = 10;
-	const int LICZBA_CELI = 5;
+	const int LICZBA_CELI = 15;
 
 	//czcionka i tekst u gory
-
 	Text text;
 	text.setFont(font);
-	string ile = to_string(LICZBA_KULEK);
+	string ile = to_string(LICZBA_CELI);
 	Text liczba;
 	liczba.setFont(font);
 	liczba.setCharacterSize(28);
@@ -85,16 +81,6 @@ int main()
 	text.setString("Liczba kulek: ");
 	text.setCharacterSize(28);
 	text.setFillColor(sf::Color::White);
-
-	//definicja i parametry kulek
-	sf::CircleShape kulki[LICZBA_KULEK];
-	for (CircleShape& z : kulki)
-	{
-		z.setRadius(rand() % 25 + 25);
-		z.setFillColor(randomColor());
-		z.setOutlineColor(randomColor());
-		z.setOutlineThickness(-2);
-	}
 
 	//PRZEJSCIE NA CELE!
 	list<Cel> cele;
@@ -127,94 +113,10 @@ int main()
 		cele.push_back(move(nowyCel));
 	}
 
-	//losowanie pozycji kulek
-	int xpos[LICZBA_KULEK], ypos[LICZBA_KULEK];
-	for (int z = 0; z < LICZBA_KULEK; z++)
-	{
-		xpos[z] = rand() % 750;
-		ypos[z] = rand() % 500 + 30;
-	}
-
-	//sprawdzenie odleglosci kulek od czolgu
-	for (int z = 0; z < LICZBA_KULEK; z++)
-	{
-		double dl = 0;
-		while (dl < czolg.getRadius()) //Zmiana na u¿ycie klasy czo³g
-		{
-			int xt = xpos[z] + kulki[z].getRadius(); //Dlaczego dodaje sie promien?
-			int yt = ypos[z] + kulki[z].getRadius();
-
-			dl = rootSumSquared(czolg.getPosition().x - xt, czolg.getPosition().y - yt);
-
-			dl -= kulki[z].getRadius(); //Zeby nie wszedl krawedzia na czolg
-			if (dl < czolg.getRadius())
-			{
-				xpos[z] = rand() % 750;
-				ypos[z] = rand() % 500 + 30;
-			}
-		}
-
-		//sprawdzenie czy kulki sie nakladaja
-		double odl = 0;
-		for (int c = 0; c < z; c++) //Dla kazdej wczesniejszej kulki
-		{
-			double sumaPromieni = kulki[c].getRadius() + kulki[z].getRadius();
-
-			int xz = xpos[z] + kulki[z].getRadius(); //X srodka aktualnej kulki
-			int xc = xpos[c] + kulki[c].getRadius(); //X srodka wczesniejszej kulki
-			int yz = ypos[z] + kulki[z].getRadius(); //Y srodka aktualnej kulki
-			int yc = ypos[c] + kulki[c].getRadius(); //Y srodka wczesniejszej kulki
-
-			//rr += kulki[z].getRadius();
-			//odl = pow((xz - xc), 2);
-			//odl += pow((yc - yz), 2);
-			//odl = sqrt(odl);
-			odl = rootSumSquared(xz - xc, yc - yz);
-
-			if (odl < sumaPromieni)
-			{
-				xpos[z] = rand() % 750;
-				ypos[z] = rand() % 500 + 30;
-				z--;
-				break;
-			}
-		}
-	}
-
-	//ustawienie ostatecznej pozycji kulek
-	for (int z = 0; z < LICZBA_KULEK; z++)
-	{
-		kulki[z].setPosition(xpos[z], ypos[z]);
-	}
-
-	//numerowanie kulek
-	sf::Text numery[LICZBA_KULEK];
-	for (int z = 0; z < LICZBA_KULEK; z++)
-	{
-		std::string numer = to_string(z+1);
-		numery[z].setFont(font);
-		numery[z].setString(numer);
-		numery[z].setCharacterSize(kulki[z].getRadius()*1.5);
-		numery[z].setFillColor(sf::Color::White);
-		numery[z].setOutlineColor(sf::Color::Black);
-		numery[z].setOutlineThickness(2);
-		numery[z].setPosition(kulki[z].getPosition().x + (z<9 ? (kulki[z].getRadius()*0.5) : 0), kulki[z].getPosition().y);
-	}
-
 	//linia u gory ekranu
 	RectangleShape linia(Vector2f(800, 0.5));
 	linia.setPosition(0, 30);
 	linia.setFillColor(Color::Red);
-
-	//pocisk
-	CircleShape pocisk;
-	pocisk.setFillColor(Color::Red);
-	pocisk.setRadius(czolg.getCanonSize().y / 5);
-	pocisk.setPosition(-100, -100);
-	pocisk.setOrigin(pocisk.getRadius(), pocisk.getRadius());
-
-	//zmienna pomocniczna
-	int pociskLeci = 0;
 
 	//czas
 	Clock clock;
@@ -225,9 +127,6 @@ int main()
 	//otwiera sie okienko
 	while (window.isOpen())
 	{
-		//czas przeladowania
-		Time reload = clock.getElapsedTime();
-
 		//zamkniecie okna
 		Event event;
 		while (window.pollEvent(event))
@@ -239,17 +138,17 @@ int main()
 		}
 
 		//wypisanie kata i czasu przeladowania
-#ifdef PRINT_ANGLE_AND_REALOAD_TIME
-		std::cout << czolg.getCanonAngle() * 180 / M_PI << "\t\t";
-		if (reload.asSeconds() > 3)
-		{
-			std::cout << "Do strzalu: 0\n";
-		}
-		else if (reload.asSeconds() < 3)
-		{
-			std::cout << "Do strzalu: " << (3 - reload.asSeconds()) << "\n";
-		}
-#endif
+//#ifdef PRINT_ANGLE_AND_REALOAD_TIME //ToDO Naprawic logowanie kata i czasu przeladowania
+//		std::cout << czolg.getCanonAngle() * 180 / M_PI << "\t\t";
+//		if (reload.asSeconds() > 3)
+//		{
+//			std::cout << "Do strzalu: 0\n";
+//		}
+//		else if (reload.asSeconds() < 3)
+//		{
+//			std::cout << "Do strzalu: " << (3 - reload.asSeconds()) << "\n";
+//		}
+//#endif
 
 		//Nowa wersja strzalu
 		if (Mouse::isButtonPressed(Mouse::Left))
@@ -257,56 +156,11 @@ int main()
 			czolg.strzel(pociski);
 		}
 
-		//kierunek i wektor strzalu
-		float f = 10; //Predkosc pocisku
-		//Vector2f kierunek = Vector2f(cos(atan2(b, a))*armata.getSize().x, sin(atan2(b, a))*armata.getSize().x)*f;
-		static Vector2f kierunek;
-
-		//strzal
-		if (pociskLeci == 0 && reload.asSeconds()>3) //Todo Zrobiæ by to Czo³g sztrzela³
-		{
-			if (Mouse::isButtonPressed(Mouse::Left))
-			{
-				kierunek = Vector2f(cos(czolg.getCanonAngle()), sin(czolg.getCanonAngle()))*f;
-				
-				pocisk.setPosition(czolg.getMuzzlePosition());
-				pociskLeci = 1;
-			}
-		}
-		if (pociskLeci == 1)
-		{
-			pocisk.move(kierunek);
-			clock.restart();
-		}
-
-		
-		if  (	pocisk.getPosition().x <= -pocisk.getRadius() || //pocisk wychodzi poza lewa krawedz ekranu
-				pocisk.getPosition().y <= pocisk.getRadius() + 30 || //pocisk wychodzi poza gorna krawedz ekranu
-				pocisk.getPosition().y >= window.getSize().y - pocisk.getRadius() || //pocisk wychodzi poza dolna krawedz ekranu
-				pocisk.getPosition().x >= window.getSize().x - pocisk.getRadius() //pocisk wychodzi poza prawa krawedz ekranu
-			)
-		{
-			pocisk.setPosition(-100, -100);
-			pociskLeci = 0;
-		}
-
-		//pocisk uderza w cel
-		for (int z = 0; z < LICZBA_KULEK; z++)
-		{
-			if (pocisk.getGlobalBounds().intersects(kulki[z].getGlobalBounds()))
-			{
-				kulki[z].setPosition(2000, 2000);
-				pocisk.setPosition(-100, -100);
-				pociskLeci = 0;
-				numery[z].setPosition(2000, 2000);
-			}
-		}
-
 		//rysowanie
 		window.clear();
 
 		czolg.update(window);
-		for (Pocisk& pocisk : pociski)
+		for (Pocisk& pocisk : pociski) //ToDo Zrobic by pentle nie wybuchaly
 		{
 			bool uciekamy = false;
 
@@ -338,24 +192,15 @@ int main()
 
 		window.draw(czolg);
 
-		//window.draw(cialo);
-		//window.draw(armata);
-		//window.draw(male);
-		//for (int z = 0; z < LICZBA_KULEK; z++)
-		//{
-		//	window.draw(kulki[z]);
-		//	window.draw(numery[z]);
-		//}
-
 		for (const Cel& cel : cele)
 			window.draw(cel);
 		for (const Pocisk& pocisk : pociski)
 			window.draw(pocisk);
 
-		//window.draw(pocisk);
 		window.draw(text);
 		window.draw(liczba);
 		window.draw(linia);
+
 		window.display();
 	}
 
