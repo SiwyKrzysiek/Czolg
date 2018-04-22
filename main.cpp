@@ -96,7 +96,7 @@ int main()
 	}
 
 	//PRZEJSCIE NA CELE!
-	list<Cel> cele; //ToDo Zrobic by cle nie wystawaly poza plansze
+	list<Cel> cele;
 	for (int i = 0; i < LICZBA_CELI; i++) //ToDo Zamienic na funkcje
 	{
 		Cel nowyCel(font, i + 1);

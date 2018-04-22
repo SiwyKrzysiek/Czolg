@@ -25,12 +25,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Pocisk.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cel.h" />
     <ClInclude Include="Czolg.h" />
     <ClInclude Include="OkraglyKsztalt.h" />
+    <ClInclude Include="Pocisk.h" />
     <ClInclude Include="Stale.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>

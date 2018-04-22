@@ -22,6 +22,9 @@ public:
 	double getRadius() const override;
 	sf::Vector2f getPosition() const override;
 	bool intersects(const OkraglyKsztalt& inny) const;
+	/**
+	 * \brief Zwraca punkt w obszarze rozgrywki, w ktorym moznaby postawic cel, tak aby nie wystawal poza opszar
+	 */
 	sf::Vector2f generatePosiblePlacment() const;
 
 protected:

@@ -27,6 +27,9 @@
     <ClCompile Include="Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pocisk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Czolg.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OkraglyKsztalt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pocisk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
