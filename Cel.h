@@ -10,9 +10,12 @@ class Cel : public sf::Drawable, public sf::Transformable
 private:
 	sf::CircleShape ksztalt;
 	sf::Text numer;
+	void initialize();
 
 public:
 	Cel(const sf::Font& font, int numer);
+	Cel(const sf::Font& font);
+	void setNumber(int numer);
 	void update();
 
 protected:

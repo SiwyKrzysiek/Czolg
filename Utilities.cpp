@@ -1,4 +1,5 @@
 #include "Utilities.h"
+#include "Stale.h"
 
 using namespace sf;
 using namespace std;
@@ -18,6 +19,10 @@ double distance(const Transformable& a, const Transformable& b)
 	return rootSumSquared(a.getPosition().x - b.getPosition().x, a.getPosition().y - b.getPosition().y);
 }
 
+Vector2i randomPointInGamplayArea()
+{
+	return Vector2i{ rand() % (SCREEN_WIDTH - 50), (rand() % (SCREEN_HEIGHT - 100)) + 30 };
+}
 
 /**
  * \brief Zwraca losowa liczbe z przedzialu [mini, maxi)
