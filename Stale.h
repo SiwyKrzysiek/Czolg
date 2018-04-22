@@ -1,0 +1,5 @@
+#pragma once
+
+//#define PRINT_ANGLE_AND_REALOAD_TIME
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600

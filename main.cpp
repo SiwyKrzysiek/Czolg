@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include<vector>
 
+#include "Stale.h"
 #include "Czolg.h"
 #include "Utilities.h"
 #include "Cel.h"
@@ -24,7 +25,7 @@ int main()
 	//render i ustawienia
 	ContextSettings settings;
 	settings.antialiasingLevel = 8;
-	RenderWindow window(VideoMode(800, 600), "Gra w strzelanie kolorowa kulka", Style::Default, settings);
+	RenderWindow window(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Gra w strzelanie kolorowa kulka", Style::Default, settings);
 	window.setFramerateLimit(60);
 
 	Font font;
@@ -216,6 +217,7 @@ int main()
 		}
 
 		//wypisanie kata i czasu przeladowania
+#ifdef PRINT_ANGLE_AND_REALOAD_TIME
 		std::cout << czolg.getCanonAngle() * 180 / M_PI << "\t\t";
 		if (reload.asSeconds() > 3)
 		{
@@ -225,6 +227,7 @@ int main()
 		{
 			std::cout << "Do strzalu: " << (3 - reload.asSeconds()) << "\n";
 		}
+#endif
 
 		//kierunek i wektor strzalu
 		float f = 10; //Predkosc pocisku

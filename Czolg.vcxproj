@@ -30,6 +30,7 @@
   <ItemGroup>
     <ClInclude Include="Cel.h" />
     <ClInclude Include="Czolg.h" />
+    <ClInclude Include="Stale.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
