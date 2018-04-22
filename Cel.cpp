@@ -62,9 +62,9 @@ sf::Vector2f Cel::getPosition() const
 	return Transformable::getPosition();
 }
 
-bool Cel::intersects(const CircleShape& inny)
+bool Cel::intersects(const OkraglyKsztalt& inny)
 {
-	
+	return intersect(*this, inny);
 }
 
 void Cel::draw(sf::RenderTarget& target, sf::RenderStates states) const
