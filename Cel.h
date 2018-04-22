@@ -6,7 +6,7 @@
 #include "Utilities.h"
 #include "OkraglyKsztalt.h"
 
-class Cel : public sf::Drawable, public sf::Transformable, public OkraglyKsztalt //ToDo Dodaæ sprawdzanie czy nachodzi na OkraglyKsztalt
+class Cel : public sf::Drawable, public sf::Transformable, public OkraglyKsztalt
 {
 private:
 	sf::CircleShape ksztalt;

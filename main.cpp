@@ -2,13 +2,14 @@
 
 #include <iostream>
 #include <string>
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
 #include <sstream>
 #include <SFML/Graphics.hpp>
-#include<vector>
+#include <vector>
+#include <list>
 
 #include "Stale.h"
 #include "Czolg.h"
@@ -71,6 +72,7 @@ int main()
 	//ToDo Przejsc z kulek na Cele
 	//ilosc kulek
 	const int LICZBA_KULEK = 10;
+	const int LICZBA_CELI = 10;
 
 	//czcionka i tekst u gory
 
@@ -96,6 +98,14 @@ int main()
 		z.setOutlineThickness(-2);
 	}
 
+	//PRZEJSCIE NA CELE!
+	list<Cel> cele;
+	for (int i = 0; i < LICZBA_CELI; i++)
+	{
+		Cel cel(font, i + 1);
+
+	}
+
 	//losowanie pozycji kulek
 	int xpos[LICZBA_KULEK], ypos[LICZBA_KULEK];
 	for (int z = 0; z < LICZBA_KULEK; z++)
@@ -118,7 +128,7 @@ int main()
 			//dl = sqrt(dl);
 			//dl = sqrt((cialo.getPosition().x - xt)*(cialo.getPosition().x - xt) + (cialo.getPosition().y - yt)*(cialo.getPosition().y - yt));
 
-			dl = rootSumSquared(czolg.getPosition().x - xt, czolg.getPosition().y - yt); //TODO: Liczyc odleglosc mniedzy obiektami
+			dl = rootSumSquared(czolg.getPosition().x - xt, czolg.getPosition().y - yt);
 
 			dl -= kulki[z].getRadius(); //Zeby nie wszedl krawedzia na czolg
 			if (dl < czolg.getGlobalBounds().width / 2)
