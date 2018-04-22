@@ -15,6 +15,7 @@
 #include "Czolg.h"
 #include "Utilities.h"
 #include "Cel.h"
+#include "Pocisk.h"
 
 using namespace sf;
 using namespace std;

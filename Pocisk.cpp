@@ -2,6 +2,15 @@
 
 using namespace sf;
 
+Pocisk::Pocisk(sf::Vector2f pozycja, double promien, sf::Vector2f predkosc) : ksztalt(promien), predkosc(predkosc)
+{
+	setPosition(pozycja);
+
+	ksztalt.setOrigin(promien, promien);
+	ksztalt.setFillColor(Color::Red);
+	ksztalt.setPosition(Pocisk::getPosition());
+}
+
 void Pocisk::update()
 {
 	move(predkosc);

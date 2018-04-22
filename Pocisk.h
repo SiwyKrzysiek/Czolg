@@ -10,7 +10,7 @@ private:
 	sf::CircleShape ksztalt;
 	sf::Vector2f predkosc;
 public:
-	Pocisk(); //ToDo Napisac konstruktor
+	Pocisk(sf::Vector2f pozycja, double promien, sf::Vector2f predkosc); //ToDo Napisac konstruktor
 	void update();
 	bool intersects(const OkraglyKsztalt& inny) const;
 	double getRadius() const override;
