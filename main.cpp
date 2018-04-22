@@ -160,37 +160,33 @@ int main()
 		window.clear();
 
 		czolg.update(window);
-		for (Pocisk& pocisk : pociski) //ToDo Zrobic by pentle nie wybuchaly
+		window.draw(czolg);
+
+		vector<Pocisk> pociskiDoUsuniecia;
+		vector<Cel> celeDoUsuniecia;
+		for (Pocisk& pocisk : pociski)
 		{
-			bool uciekamy = false;
-
-			if (pociski.empty()) break;
-
 			for (Cel& cel : cele)
 			{
-				if (cele.empty()) break;
-
 				if (pocisk.intersects(cel))
 				{
-					pociski.remove(pocisk);
-					cele.remove(cel);
-
-					uciekamy = true;
-					break;
+					pociskiDoUsuniecia.push_back(pocisk);
+					celeDoUsuniecia.push_back(cel);
 				}
 			}
-			if (uciekamy) continue;
 
 			if (pocisk.pozaEkranem())
 			{
-				pociski.remove(pocisk);
-				continue;
+				pociskiDoUsuniecia.push_back(pocisk);
 			}
-
-			pocisk.update();
 		}
+		for (Pocisk& pocisk : pociskiDoUsuniecia)
+			pociski.remove(pocisk);
+		for (Cel& cel : celeDoUsuniecia)
+			cele.remove(cel);
 
-		window.draw(czolg);
+		for (Pocisk& pocisk : pociski)
+			pocisk.update();
 
 		for (const Cel& cel : cele)
 			window.draw(cel);
