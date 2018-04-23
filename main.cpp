@@ -38,32 +38,6 @@ int main()
 		exit(1);
 	}
 
-#if 0
-	//promien czolgu
-	int r = 100;
-
-	//definicje i pparametry czolgu
-	CircleShape cialo(r, 70);
-	RectangleShape armata(Vector2f(1.5*r, 0.5*r));
-	cialo.setPosition(300 - (0.5*r), 300 - (0.5*r));
-	cialo.setOrigin(r, r);
-	cialo.setFillColor(Color::Red);
-	armata.setFillColor(Color::Blue);
-	armata.setPosition(cialo.getPosition());
-	armata.setOrigin(0, 0.25*r); //Ustawia srodek armaty w polowie krotszej krawedzi
-
-	CircleShape male;
-	male.setRadius(0.4*r);
-	male.setPosition(cialo.getPosition());
-	male.setOrigin(0.4*r, 0.4*r);
-	cialo.setOutlineThickness(-5);
-	cialo.setOutlineColor(Color::White);
-	armata.setOutlineThickness(-5);
-	armata.setOutlineColor(Color::White);
-	male.setOutlineThickness(-5);
-	male.setOutlineColor(Color::Black);
-#endif
-
 	Czolg czolg;
 	czolg.setPosition(300, 300);
 
@@ -123,7 +97,7 @@ int main()
 
 	//Przejscie na nowe pociski
 	list<Pocisk> pociski;
-
+	
 	//otwiera sie okienko
 	while (window.isOpen())
 	{
@@ -138,18 +112,17 @@ int main()
 		}
 
 		//wypisanie kata i czasu przeladowania
-//#ifdef PRINT_ANGLE_AND_REALOAD_TIME //ToDO Naprawic logowanie kata i czasu przeladowania
-//		std::cout << czolg.getCanonAngle() * 180 / M_PI << "\t\t";
-//		if (reload.asSeconds() > 3)
-//		{
-//			std::cout << "Do strzalu: 0\n";
-//		}
-//		else if (reload.asSeconds() < 3)
-//		{
-//			std::cout << "Do strzalu: " << (3 - reload.asSeconds()) << "\n";
-//		}
-//#endif
-
+#ifdef PRINT_ANGLE_AND_REALOAD_TIME //ToDO Naprawic logowanie kata i czasu przeladowania
+		//std::cout << czolg.getCanonAngle() * 180 / M_PI << "\t\t";
+		//if (reload.asSeconds() > 3)
+		//{
+		//	std::cout << "Do strzalu: 0\n";
+		//}
+		//else if (reload.asSeconds() < 3)
+		//{
+		//	std::cout << "Do strzalu: " << (3 - reload.asSeconds()) << "\n";
+		//}
+#endif
 		//Nowa wersja strzalu
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{

@@ -1,5 +1,4 @@
 #include "Czolg.h"
-#include <complex>
 
 using namespace sf;
 

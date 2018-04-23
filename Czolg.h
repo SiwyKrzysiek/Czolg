@@ -13,7 +13,7 @@ class Czolg : public sf::Drawable, public OkraglyKsztalt //ToDo zaimplementowaæ 
 private:
 	const double promienCiala;
 	const double promienSrodka;
-	double katArmaty; //K¹t lufy w RADIANACH
+	double katArmaty; //Kat lufy w RADIANACH
 	double przeladowanie;
 	sf::Vector2f pozycja;
 	sf::RectangleShape armata;
