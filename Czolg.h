@@ -13,7 +13,7 @@
 #include <iomanip>
 #endif
 
-class Czolg : public sf::Drawable, public OkraglyKsztalt //ToDo zaimplementowaæ czas prze³adowania
+class Czolg : public sf::Drawable, public OkraglyKsztalt
 {
 private:
 	const double promienCiala;
@@ -37,7 +37,7 @@ public:
 	const sf::Vector2f& getCanonSize() const;
 	double getRadius() const override;
 	/**
-	 * \brief Jesli czolg jest gotowy do strzalu to doda pocisk do 
+	 * \brief Jesli czolg jest gotowy do strzalu to doda pocisk do listy podanej jako pierwszy argument
 	 * \param pociski Lista aktualnie istniejacych pociskow
 	 */
 	void strzel(std::list<Pocisk>& pociski);

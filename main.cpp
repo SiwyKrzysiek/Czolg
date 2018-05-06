@@ -24,6 +24,7 @@ int main()
 {
 	srand(time(nullptr));
 
+
 	//render i ustawienia
 	ContextSettings settings;
 	settings.antialiasingLevel = 8;
@@ -109,12 +110,12 @@ int main()
 		}
 
 		//wypisanie kata i czasu przeladowania
-#ifdef PRINT_ANGLE_AND_REALOAD_TIME //ToDO Naprawic logowanie kata i czasu przeladowania
+#ifdef PRINT_ANGLE_AND_REALOAD_TIME
 #ifdef _DEBUG
 		cout << czolg.getDebugInfo() << endl;
 #endif
 #endif
-		//Nowa wersja strzalu
+
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			czolg.strzel(pociski);
@@ -122,6 +123,9 @@ int main()
 
 		//rysowanie
 		window.clear();
+
+		//Wypisanie liczby celi na ekranie
+		liczba.setString(to_string(cele.size()));
 
 		czolg.update(window);
 		window.draw(czolg);
