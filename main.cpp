@@ -56,7 +56,7 @@ int main()
 	text.setCharacterSize(28);
 	text.setFillColor(sf::Color::White);
 
-	//PRZEJSCIE NA CELE!
+	//Utworzenie celi
 	list<Cel> cele;
 	for (int i = 0; i < LICZBA_CELI; i++) //ToDo Zamienic na funkcje
 	{
@@ -92,10 +92,7 @@ int main()
 	linia.setPosition(0, 30);
 	linia.setFillColor(Color::Red);
 
-	//czas
-	Clock clock;
-
-	//Przejscie na nowe pociski
+	//Lista akatualnie lec¹cych pocisków
 	list<Pocisk> pociski;
 	
 	//otwiera sie okienko
@@ -107,21 +104,15 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			//if (event.type == sf::Event::KeyPressed&&event.key.code == sf::Keyboard::Escape)
-			//	window.close();
+			if (event.type == sf::Event::KeyPressed&&event.key.code == sf::Keyboard::Escape)
+				window.close();
 		}
 
 		//wypisanie kata i czasu przeladowania
 #ifdef PRINT_ANGLE_AND_REALOAD_TIME //ToDO Naprawic logowanie kata i czasu przeladowania
-		//std::cout << czolg.getCanonAngle() * 180 / M_PI << "\t\t";
-		//if (reload.asSeconds() > 3)
-		//{
-		//	std::cout << "Do strzalu: 0\n";
-		//}
-		//else if (reload.asSeconds() < 3)
-		//{
-		//	std::cout << "Do strzalu: " << (3 - reload.asSeconds()) << "\n";
-		//}
+#ifdef _DEBUG
+		cout << czolg.getDebugInfo() << endl;
+#endif
 #endif
 		//Nowa wersja strzalu
 		if (Mouse::isButtonPressed(Mouse::Left))

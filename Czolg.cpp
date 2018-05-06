@@ -1,4 +1,5 @@
 #include "Czolg.h"
+#include <iostream>
 
 using namespace sf;
 
@@ -95,6 +96,19 @@ void Czolg::strzel(std::list<Pocisk>& pociski)
 
 	przeladowanie = CZAS_PRZELADOWANIA_W_SEKUNDACH;
 	zegar.restart();
+}
+
+double Czolg::getReloadTime() const
+{
+	return przeladowanie>0 ? przeladowanie : 0.0;
+}
+
+std::string Czolg::getDebugInfo() const
+{
+	std::stringstream ss;
+	ss << "Kat: " << std::setprecision(2) << std::fixed << getCanonAngle()*180.0/M_PI << "\t" << "Czas przeladowania: " << getReloadTime();
+
+	return ss.str();
 }
 
 void Czolg::draw(sf::RenderTarget& target, sf::RenderStates states) const

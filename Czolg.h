@@ -8,6 +8,11 @@
 #include "OkraglyKsztalt.h"
 #include "Pocisk.h"
 
+#ifdef _DEBUG
+#include <sstream>
+#include <iomanip>
+#endif
+
 class Czolg : public sf::Drawable, public OkraglyKsztalt //ToDo zaimplementowaæ czas prze³adowania
 {
 private:
@@ -36,6 +41,11 @@ public:
 	 * \param pociski Lista aktualnie istniejacych pociskow
 	 */
 	void strzel(std::list<Pocisk>& pociski);
+	double getReloadTime() const;
+
+#ifdef _DEBUG
+	std::string getDebugInfo() const;
+#endif
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

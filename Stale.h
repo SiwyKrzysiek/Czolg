@@ -2,6 +2,8 @@
 
 #define PRINT_ANGLE_AND_REALOAD_TIME
 
+#define _DEBUG
+
 #define MAX_FIT_TRIES 500
 
 #define SCREEN_WIDTH 800
