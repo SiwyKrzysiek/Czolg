@@ -10,14 +10,10 @@ Color randomColor()
 	return Color(rand() % 250 + 5, rand() % 250 + 5, rand() % 250 + 5);
 }
 
-double rootSumSquared(int a, int b)
+template <typename A, typename B>
+double rootSumSquared(A a, B b)
 {
-	return sqrt(a*a + b * b);
-}
-
-double rootSumSquared(double a, double b)
-{
-	return sqrt(a*a + b * b);
+	return sqrt(static_cast<double>(a)*static_cast<double>(a) + static_cast<double>(b)*static_cast<double>(b));
 }
 
 double distance(const Vector2f& a, const Vector2f& b)

@@ -9,8 +9,10 @@
  * \brief Zwraca losowt kolor nadajacy sie do pokolorowania Celu
  */
 sf::Color randomColor();
-double rootSumSquared(int a, int b);
-double rootSumSquared(double a, double b);
+
+template <typename A, typename B>
+double rootSumSquared(A a, B b);
+
 /**
  * \brief Liczy odleglosc miedzy dwoma punktammi
  * \param a puntk a 
