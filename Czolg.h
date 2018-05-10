@@ -16,15 +16,15 @@
 class Czolg : public sf::Drawable, public OkraglyKsztalt
 {
 private:
-	const double promienCiala;
-	const double promienSrodka;
-	double katArmaty; //Kat lufy w RADIANACH
-	double przeladowanie;
-	sf::Vector2f pozycja;
-	sf::RectangleShape armata;
-	sf::CircleShape cialo;
-	sf::CircleShape srodek;
-	sf::Clock zegar;
+	const double bodyRadius;
+	const double middleCircleRadius;
+	double canonAngle; //Kat lufy w RADIANACH
+	double reload;
+	sf::Vector2f position;
+	sf::RectangleShape canon;
+	sf::CircleShape body;
+	sf::CircleShape middle;
+	sf::Clock clock;
 
 public:
 	Czolg(const double promien = 100);
@@ -40,7 +40,7 @@ public:
 	 * \brief Jesli czolg jest gotowy do strzalu to doda pocisk do listy podanej jako pierwszy argument
 	 * \param pociski Lista aktualnie istniejacych pociskow
 	 */
-	void strzel(std::list<Pocisk>& pociski);
+	void fire(std::list<Pocisk>& pociski);
 	double getReloadTime() const;
 
 #ifdef _DEBUG

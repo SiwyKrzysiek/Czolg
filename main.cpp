@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES //Test
+#define _USE_MATH_DEFINES //Test test
 
 #include <iostream>
 #include <string>
@@ -118,7 +118,7 @@ int main()
 
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			czolg.strzel(pociski);
+			czolg.fire(pociski);
 		}
 
 		//rysowanie
@@ -143,7 +143,7 @@ int main()
 				}
 			}
 
-			if (pocisk.pozaEkranem())
+			if (pocisk.offScreen())
 			{
 				pociskiDoUsuniecia.push_back(pocisk);
 			}

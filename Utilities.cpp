@@ -33,10 +33,10 @@ Vector2i randomPointInGamplayArea()
 
  bool intersect(const OkraglyKsztalt& a, const OkraglyKsztalt& b)
 {
-	 double odlegloscSrodkow = distance(a.getPosition(), b.getPosition());
-	 double sumaPromieni = a.getRadius() + b.getRadius();
+	 double middlesDistance = distance(a.getPosition(), b.getPosition());
+	 double raduisSum = a.getRadius() + b.getRadius();
 
-	 return odlegloscSrodkow < sumaPromieni;
+	 return middlesDistance < raduisSum;
 }
 
 /**
@@ -45,7 +45,7 @@ Vector2i randomPointInGamplayArea()
  * \param maxi 
  * \return 
  */
-int Losowa(int mini, int maxi)
+int random(int mini, int maxi)
 {
 	return mini + rand() % (maxi - mini);
 }
@@ -53,7 +53,7 @@ int Losowa(int mini, int maxi)
 /**
  * \brief Zwraca losowa liczbe zmiennoprzcinkowa z przedzialu [mini, maxi]
  */
-double losowyDouble(double mini, double maxi)
+double randomDouble(double mini, double maxi)
 {
 	double f = static_cast<double>(rand()) / RAND_MAX;
 	return mini + f * (maxi - mini);

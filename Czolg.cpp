@@ -3,64 +3,64 @@
 
 using namespace sf;
 
-Czolg::Czolg(const double promien) : pozycja(0.f, 0.f),
-promienCiala(promien),
-promienSrodka(0.4*promien),
-katArmaty(0.0),
-przeladowanie(0.0),
-armata(Vector2f(1.5*promien, 0.5*promien)),
-cialo(promien, 70),
-srodek(promienSrodka, 60)
+Czolg::Czolg(const double promien) : position(0.f, 0.f),
+bodyRadius(promien),
+middleCircleRadius(0.4*promien),
+canonAngle(0.0),
+reload(0.0),
+canon(Vector2f(1.5*promien, 0.5*promien)),
+body(promien, 70),
+middle(middleCircleRadius, 60)
 {
 	//Przygotowanie ciala
-	cialo.setPosition(pozycja);
-	cialo.setOrigin(promien, promien);
-	cialo.setFillColor(Color::Red);
-	cialo.setOutlineThickness(-5.0f);
-	cialo.setOutlineColor(Color::White);
+	body.setPosition(position);
+	body.setOrigin(promien, promien);
+	body.setFillColor(Color::Red);
+	body.setOutlineThickness(-5.0f);
+	body.setOutlineColor(Color::White);
 
 	//Przygotowanie armaty
-	armata.setFillColor(Color::Blue);
-	armata.setPosition(cialo.getPosition());
-	armata.setOrigin(0, armata.getSize().y/2.0);
-	armata.setOutlineThickness(-5.0f);
-	armata.setOutlineColor(Color::White);
+	canon.setFillColor(Color::Blue);
+	canon.setPosition(body.getPosition());
+	canon.setOrigin(0, canon.getSize().y/2.0);
+	canon.setOutlineThickness(-5.0f);
+	canon.setOutlineColor(Color::White);
 
 	//Przygotowanie srodka
-	srodek.setPosition(cialo.getPosition());
-	srodek.setOrigin(promienSrodka, promienSrodka);
-	srodek.setOutlineThickness(-5.0f);
-	srodek.setOutlineColor(Color::Black);
+	middle.setPosition(body.getPosition());
+	middle.setOrigin(middleCircleRadius, middleCircleRadius);
+	middle.setOutlineThickness(-5.0f);
+	middle.setOutlineColor(Color::Black);
 }
 
 void Czolg::setPosition(float x, float y)
 {
-	pozycja = Vector2f(x, y);
+	position = Vector2f(x, y);
 
-	cialo.setPosition(pozycja);
-	armata.setPosition(pozycja);
-	srodek.setPosition(pozycja);
+	body.setPosition(position);
+	canon.setPosition(position);
+	middle.setPosition(position);
 }
 
 sf::Vector2f Czolg::getPosition() const
 {
-	return  pozycja;
+	return  position;
 }
 
 void Czolg::update(const sf::Window& window)
 {
-	Vector2f a = static_cast<Vector2f>(Mouse::getPosition(window)) - armata.getPosition();
+	Vector2f a = static_cast<Vector2f>(Mouse::getPosition(window)) - canon.getPosition();
 
-	katArmaty = atan2(a.y, a.x);
-	armata.setRotation(katArmaty * 180 / M_PI);
+	canonAngle = atan2(a.y, a.x);
+	canon.setRotation(canonAngle * 180 / M_PI);
 
-	if (przeladowanie > 0.0)
-		przeladowanie -= zegar.restart().asSeconds(); //Zwraca czas jaki uplynal i resetuje zegar
+	if (reload > 0.0)
+		reload -= clock.restart().asSeconds(); //Zwraca czas jaki uplynal i resetuje zegar
 }
 
 double Czolg::getCanonAngle() const
 {
-	return katArmaty;
+	return canonAngle;
 }
 
 /**
@@ -68,39 +68,39 @@ double Czolg::getCanonAngle() const
  */
 sf::Vector2f Czolg::getMuzzlePosition() const
 {
-	return Vector2f{pozycja + Vector2f(cos(katArmaty), sin(katArmaty))*armata.getSize().x };
+	return Vector2f{position + Vector2f(cos(canonAngle), sin(canonAngle))*canon.getSize().x };
 }
 
 sf::FloatRect Czolg::getGlobalBounds() const
 {
-	return  FloatRect{ getPosition(), Vector2f(armata.getSize().x, armata.getSize().x)*2.0f };
+	return  FloatRect{ getPosition(), Vector2f(canon.getSize().x, canon.getSize().x)*2.0f };
 }
 
 const sf::Vector2f& Czolg::getCanonSize() const
 {
-	return armata.getSize();
+	return canon.getSize();
 }
 
 double Czolg::getRadius() const
 {
-	return armata.getSize().x;
+	return canon.getSize().x;
 }
 
-void Czolg::strzel(std::list<Pocisk>& pociski)
+void Czolg::fire(std::list<Pocisk>& pociski)
 {
-	if (przeladowanie > 0.0) 
+	if (reload > 0.0) 
 		return;
 
 	Vector2f kierunek(std::cos(getCanonAngle()), std::sin(getCanonAngle())); //Wektor jednostkowy w kierunku lufy
-	pociski.emplace_back(getMuzzlePosition(), getCanonSize().y / 5, kierunek * static_cast<float>(PREDKOSC_POCISKU));
+	pociski.emplace_back(getMuzzlePosition(), getCanonSize().y / 5, kierunek * static_cast<float>(BULLET_SPEED));
 
-	przeladowanie = CZAS_PRZELADOWANIA_W_SEKUNDACH;
-	zegar.restart();
+	reload = RELOAD_TIME_IN_SECONDS;
+	clock.restart();
 }
 
 double Czolg::getReloadTime() const
 {
-	return przeladowanie>0 ? przeladowanie : 0.0;
+	return reload>0 ? reload : 0.0;
 }
 
 std::string Czolg::getDebugInfo() const
@@ -113,7 +113,7 @@ std::string Czolg::getDebugInfo() const
 
 void Czolg::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(cialo, states);
-	target.draw(armata, states);
-	target.draw(srodek, states);
+	target.draw(body, states);
+	target.draw(canon, states);
+	target.draw(middle, states);
 }

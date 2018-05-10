@@ -20,8 +20,8 @@ double rootSumSquared(A a, B b);
  */
 double distance(const sf::Vector2f& a, const sf::Vector2f& b);
 double distance(const sf::Transformable& a, const sf::Transformable& b);
-int Losowa(int mini, int maxi);
-double losowyDouble(double mini, double maxi);
+int random(int mini, int maxi);
+double randomDouble(double mini, double maxi);
 /**
  * \brief Zwraca losowy punkt nadajacy sie na postawienie celu
  * \return 

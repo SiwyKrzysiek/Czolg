@@ -2,22 +2,22 @@
 
 using namespace sf;
 
-Pocisk::Pocisk(sf::Vector2f pozycja, double promien, sf::Vector2f predkosc) : ksztalt(promien), predkosc(predkosc)
+Pocisk::Pocisk(sf::Vector2f pozycja, double promien, sf::Vector2f predkosc) : shape(promien), speed(predkosc)
 {
 	setPosition(pozycja);
 
-	ksztalt.setOrigin(promien, promien);
-	ksztalt.setFillColor(Color::Red);
-	ksztalt.setPosition(Pocisk::getPosition());
+	shape.setOrigin(promien, promien);
+	shape.setFillColor(Color::Red);
+	shape.setPosition(Pocisk::getPosition());
 }
 
 void Pocisk::update()
 {
-	move(predkosc);
-	ksztalt.setPosition(getPosition());
+	move(speed);
+	shape.setPosition(getPosition());
 }
 
-bool Pocisk::pozaEkranem() const
+bool Pocisk::offScreen() const
 {
 	return (
 		getPosition().x <= getRadius() || //pocisk wychodzi poza lewa krawedz ekranu
@@ -32,7 +32,7 @@ bool Pocisk::operator==(const Pocisk& pocisk) const
 	return (
 		pocisk.getPosition() == getPosition() &&
 		pocisk.getRadius() == getRadius() &&
-		pocisk.predkosc == predkosc
+		pocisk.speed == speed
 		);
 
 }
@@ -44,7 +44,7 @@ bool Pocisk::intersects(const OkraglyKsztalt& inny) const
 
 double Pocisk::getRadius() const
 {
-	return ksztalt.getRadius();
+	return shape.getRadius();
 }
 
 sf::Vector2f Pocisk::getPosition() const
@@ -54,5 +54,5 @@ sf::Vector2f Pocisk::getPosition() const
 
 void Pocisk::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(ksztalt);
+	target.draw(shape);
 }
