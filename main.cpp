@@ -12,10 +12,10 @@
 #include <list>
 
 #include "Stale.h"
-#include "Czolg.h"
+#include "Tank.h"
 #include "Utilities.h"
-#include "Cel.h"
-#include "Pocisk.h"
+#include "Target.h"
+#include "Projectile.h"
 
 using namespace sf;
 using namespace std;
@@ -39,7 +39,7 @@ int main()
 		exit(1);
 	}
 
-	Czolg czolg;
+	Tank czolg;
 	czolg.setPosition(300, 300);
 
 	const int LICZBA_CELI = 15;
@@ -58,10 +58,10 @@ int main()
 	text.setFillColor(sf::Color::White);
 
 	//Utworzenie celi
-	list<Cel> cele;
+	list<Target> cele;
 	for (int i = 0; i < LICZBA_CELI; i++) //ToDo Zamienic na funkcje
 	{
-		Cel nowyCel(font, i + 1);
+		Target nowyCel(font, i + 1);
 		bool prawdlowaPozycja = false;
 
 		for (int i=0; !prawdlowaPozycja && i<MAX_FIT_TRIES; i++)
@@ -74,7 +74,7 @@ int main()
 				prawdlowaPozycja = false;
 				continue;
 			}
-			for (const Cel& cel : cele)
+			for (const Target& cel : cele)
 			{
 				if (nowyCel.intersects(cel))
 				{
@@ -94,7 +94,7 @@ int main()
 	linia.setFillColor(Color::Red);
 
 	//Lista akatualnie lec¹cych pocisków
-	list<Pocisk> pociski;
+	list<Projectile> pociski;
 	
 	//otwiera sie okienko
 	while (window.isOpen())
@@ -130,11 +130,11 @@ int main()
 		czolg.update(window);
 		window.draw(czolg);
 
-		vector<Pocisk> pociskiDoUsuniecia;
-		vector<Cel> celeDoUsuniecia;
-		for (Pocisk& pocisk : pociski)
+		vector<Projectile> pociskiDoUsuniecia;
+		vector<Target> celeDoUsuniecia;
+		for (Projectile& pocisk : pociski)
 		{
-			for (Cel& cel : cele)
+			for (Target& cel : cele)
 			{
 				if (pocisk.intersects(cel))
 				{
@@ -148,17 +148,17 @@ int main()
 				pociskiDoUsuniecia.push_back(pocisk);
 			}
 		}
-		for (Pocisk& pocisk : pociskiDoUsuniecia)
+		for (Projectile& pocisk : pociskiDoUsuniecia)
 			pociski.remove(pocisk);
-		for (Cel& cel : celeDoUsuniecia)
+		for (Target& cel : celeDoUsuniecia)
 			cele.remove(cel);
 
-		for (Pocisk& pocisk : pociski)
+		for (Projectile& pocisk : pociski)
 			pocisk.update();
 
-		for (const Cel& cel : cele)
+		for (const Target& cel : cele)
 			window.draw(cel);
-		for (const Pocisk& pocisk : pociski)
+		for (const Projectile& pocisk : pociski)
 			window.draw(pocisk);
 
 		window.draw(text);

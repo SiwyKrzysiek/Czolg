@@ -2,10 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 
-class OkraglyKsztalt
+class CircularShape
 {
 public:
-	virtual ~OkraglyKsztalt() = default;
+	virtual ~CircularShape() = default;
 	virtual double getRadius() const = 0;
 	virtual sf::Vector2f getPosition() const = 0;
 };

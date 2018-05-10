@@ -1,20 +1,20 @@
-#include "Czolg.h"
+#include "Tank.h"
 #include <iostream>
 
 using namespace sf;
 
-Czolg::Czolg(const double promien) : position(0.f, 0.f),
-bodyRadius(promien),
-middleCircleRadius(0.4*promien),
+Tank::Tank(const double radius) : position(0.f, 0.f),
+bodyRadius(radius),
+middleCircleRadius(0.4*radius),
 canonAngle(0.0),
 reload(0.0),
-canon(Vector2f(1.5*promien, 0.5*promien)),
-body(promien, 70),
+canon(Vector2f(1.5*radius, 0.5*radius)),
+body(radius, 70),
 middle(middleCircleRadius, 60)
 {
 	//Przygotowanie ciala
 	body.setPosition(position);
-	body.setOrigin(promien, promien);
+	body.setOrigin(radius, radius);
 	body.setFillColor(Color::Red);
 	body.setOutlineThickness(-5.0f);
 	body.setOutlineColor(Color::White);
@@ -33,7 +33,7 @@ middle(middleCircleRadius, 60)
 	middle.setOutlineColor(Color::Black);
 }
 
-void Czolg::setPosition(float x, float y)
+void Tank::setPosition(float x, float y)
 {
 	position = Vector2f(x, y);
 
@@ -42,12 +42,12 @@ void Czolg::setPosition(float x, float y)
 	middle.setPosition(position);
 }
 
-sf::Vector2f Czolg::getPosition() const
+sf::Vector2f Tank::getPosition() const
 {
 	return  position;
 }
 
-void Czolg::update(const sf::Window& window)
+void Tank::update(const sf::Window& window)
 {
 	Vector2f a = static_cast<Vector2f>(Mouse::getPosition(window)) - canon.getPosition();
 
@@ -58,7 +58,7 @@ void Czolg::update(const sf::Window& window)
 		reload -= clock.restart().asSeconds(); //Zwraca czas jaki uplynal i resetuje zegar
 }
 
-double Czolg::getCanonAngle() const
+double Tank::getCanonAngle() const
 {
 	return canonAngle;
 }
@@ -66,27 +66,27 @@ double Czolg::getCanonAngle() const
 /**
  * \brief Zwraca pozycje wylotu lufy czo³gu
  */
-sf::Vector2f Czolg::getMuzzlePosition() const
+sf::Vector2f Tank::getMuzzlePosition() const
 {
 	return Vector2f{position + Vector2f(cos(canonAngle), sin(canonAngle))*canon.getSize().x };
 }
 
-sf::FloatRect Czolg::getGlobalBounds() const
+sf::FloatRect Tank::getGlobalBounds() const
 {
 	return  FloatRect{ getPosition(), Vector2f(canon.getSize().x, canon.getSize().x)*2.0f };
 }
 
-const sf::Vector2f& Czolg::getCanonSize() const
+const sf::Vector2f& Tank::getCanonSize() const
 {
 	return canon.getSize();
 }
 
-double Czolg::getRadius() const
+double Tank::getRadius() const
 {
 	return canon.getSize().x;
 }
 
-void Czolg::fire(std::list<Pocisk>& pociski)
+void Tank::fire(std::list<Projectile>& pociski)
 {
 	if (reload > 0.0) 
 		return;
@@ -98,12 +98,12 @@ void Czolg::fire(std::list<Pocisk>& pociski)
 	clock.restart();
 }
 
-double Czolg::getReloadTime() const
+double Tank::getReloadTime() const
 {
 	return reload>0 ? reload : 0.0;
 }
 
-std::string Czolg::getDebugInfo() const
+std::string Tank::getDebugInfo() const
 {
 	std::stringstream ss;
 	ss << "Kat: " << std::setprecision(2) << std::fixed << getCanonAngle()*180.0/M_PI << "\t" << "Czas przeladowania: " << getReloadTime();
@@ -111,7 +111,7 @@ std::string Czolg::getDebugInfo() const
 	return ss.str();
 }
 
-void Czolg::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Tank::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(body, states);
 	target.draw(canon, states);

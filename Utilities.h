@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
-#include "OkraglyKsztalt.h"
+#include "CircularShape.h"
 #include "Stale.h"
 
 /**
@@ -30,4 +30,4 @@ sf::Vector2i randomPointInGamplayArea();
 /**
  * \brief Sprawdza czy dwa OkragleKsztalty na siebie nachodza
  */
-bool intersect(const OkraglyKsztalt& a, const OkraglyKsztalt& b);
+bool intersect(const CircularShape& a, const CircularShape& b);

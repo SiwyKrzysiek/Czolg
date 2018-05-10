@@ -31,7 +31,7 @@ Vector2i randomPointInGamplayArea()
 	return Vector2i{ rand() % (SCREEN_WIDTH - 50), (rand() % (SCREEN_HEIGHT - 30)) + 30 };
 }
 
- bool intersect(const OkraglyKsztalt& a, const OkraglyKsztalt& b)
+ bool intersect(const CircularShape& a, const CircularShape& b)
 {
 	 double middlesDistance = distance(a.getPosition(), b.getPosition());
 	 double raduisSum = a.getRadius() + b.getRadius();

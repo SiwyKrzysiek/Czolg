@@ -1,13 +1,13 @@
-#include "Cel.h"
+#include "Target.h"
 
 using namespace sf;
 
-void Cel::initialize()
+void Target::initialize()
 {
-	ksztalt.setFillColor(randomColor());
-	ksztalt.setOutlineColor(randomColor());
-	ksztalt.setOutlineThickness(-2);
-	ksztalt.setOrigin(ksztalt.getRadius(), ksztalt.getRadius());
+	shape.setFillColor(randomColor());
+	shape.setOutlineColor(randomColor());
+	shape.setOutlineThickness(-2);
+	shape.setOrigin(shape.getRadius(), shape.getRadius());
 
 	numer.setFillColor(Color::White);
 	numer.setOutlineColor(Color::Black);
@@ -20,8 +20,8 @@ void Cel::initialize()
  * \param font Czcionka do pola tekstowego
  * \param numer Numer wyswietlany w srodku
  */
-Cel::Cel(const Font& font, int numer) : ksztalt(rand() % 25 + 25),
-numer(std::to_string(numer), font, ksztalt.getRadius()*1.5)
+Target::Target(const Font& font, int numer) : shape(rand() % 25 + 25),
+numer(std::to_string(numer), font, shape.getRadius()*1.5)
 {
 	initialize();
 }
@@ -30,52 +30,52 @@ numer(std::to_string(numer), font, ksztalt.getRadius()*1.5)
  * \brief Konstruktor bez ustawiania liczby na celu
  * \param font Font czcionka do pola tekstowego
  */
-Cel::Cel(const sf::Font& font) : ksztalt(rand() % 25 + 25),
-numer("", font, ksztalt.getRadius()*1.5)
+Target::Target(const sf::Font& font) : shape(rand() % 25 + 25),
+numer("", font, shape.getRadius()*1.5)
 {
 	initialize();
 }
 
-void Cel::setNumber(int numer)
+void Target::setNumber(int numer)
 {
 	this->numer.setString(std::to_string(numer));
 }
 
-void Cel::update()
+void Target::update()
 {
-	ksztalt.setPosition(getPosition());
+	shape.setPosition(getPosition());
 	numer.setPosition(getPosition());
 }
 
-sf::FloatRect Cel::getGlobalBounds() const
+sf::FloatRect Target::getGlobalBounds() const
 {
-	return FloatRect{ getPosition(), Vector2f(2.0*ksztalt.getRadius(), 2.0*ksztalt.getRadius()) };
+	return FloatRect{ getPosition(), Vector2f(2.0*shape.getRadius(), 2.0*shape.getRadius()) };
 }
 
-double Cel::getRadius()const
+double Target::getRadius()const
 {
-	return ksztalt.getRadius();
+	return shape.getRadius();
 }
 
-sf::Vector2f Cel::getPosition() const
+sf::Vector2f Target::getPosition() const
 {
 	return Transformable::getPosition();
 }
 
-bool Cel::intersects(const OkraglyKsztalt& inny) const
+bool Target::intersects(const CircularShape& inny) const
 {
 	return intersect(*this, inny);
 }
 
-Vector2f Cel::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
+Vector2f Target::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
 {
-	double x = (SCREEN_WIDTH - GAMEPLAY_AREA_WIDTH) + losowyDouble(ksztalt.getRadius(), GAMEPLAY_AREA_WIDTH - ksztalt.getRadius());
-	double y = (SCREEN_HEIGHT - GAMEPLAY_AREA_HEIGHT) + losowyDouble(ksztalt.getRadius(), GAMEPLAY_AREA_HEIGHT - ksztalt.getRadius());
+	double x = (SCREEN_WIDTH - GAMEPLAY_AREA_WIDTH) + randomDouble(shape.getRadius(), GAMEPLAY_AREA_WIDTH - shape.getRadius());
+	double y = (SCREEN_HEIGHT - GAMEPLAY_AREA_HEIGHT) + randomDouble(shape.getRadius(), GAMEPLAY_AREA_HEIGHT - shape.getRadius());
 
 	return Vector2f(x, y);
 }
 
-bool Cel::operator==(const Cel& cel) const
+bool Target::operator==(const Target& cel) const
 {
 	return (
 		cel.numer.getString() == numer.getString() &&
@@ -84,10 +84,10 @@ bool Cel::operator==(const Cel& cel) const
 		);
 }
 
-void Cel::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Target::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	const_cast<Cel*>(this)->update();
+	const_cast<Target*>(this)->update();
 
-	target.draw(ksztalt, states);
+	target.draw(shape, states);
 	target.draw(numer, states);
 }

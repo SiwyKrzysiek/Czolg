@@ -1,23 +1,23 @@
-#include "Pocisk.h"
+#include "Projectile.h"
 
 using namespace sf;
 
-Pocisk::Pocisk(sf::Vector2f pozycja, double promien, sf::Vector2f predkosc) : shape(promien), speed(predkosc)
+Projectile::Projectile(sf::Vector2f pozycja, double promien, sf::Vector2f predkosc) : shape(promien), speed(predkosc)
 {
 	setPosition(pozycja);
 
 	shape.setOrigin(promien, promien);
 	shape.setFillColor(Color::Red);
-	shape.setPosition(Pocisk::getPosition());
+	shape.setPosition(Projectile::getPosition());
 }
 
-void Pocisk::update()
+void Projectile::update()
 {
 	move(speed);
 	shape.setPosition(getPosition());
 }
 
-bool Pocisk::offScreen() const
+bool Projectile::offScreen() const
 {
 	return (
 		getPosition().x <= getRadius() || //pocisk wychodzi poza lewa krawedz ekranu
@@ -27,7 +27,7 @@ bool Pocisk::offScreen() const
 		);
 }
 
-bool Pocisk::operator==(const Pocisk& pocisk) const
+bool Projectile::operator==(const Projectile& pocisk) const
 {
 	return (
 		pocisk.getPosition() == getPosition() &&
@@ -37,22 +37,22 @@ bool Pocisk::operator==(const Pocisk& pocisk) const
 
 }
 
-bool Pocisk::intersects(const OkraglyKsztalt& inny) const
+bool Projectile::intersects(const CircularShape& inny) const
 {
 	return intersect(*this, inny);
 }
 
-double Pocisk::getRadius() const
+double Projectile::getRadius() const
 {
 	return shape.getRadius();
 }
 
-sf::Vector2f Pocisk::getPosition() const
+sf::Vector2f Projectile::getPosition() const
 {
 	return Transformable::getPosition();
 }
 
-void Pocisk::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Projectile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(shape);
 }

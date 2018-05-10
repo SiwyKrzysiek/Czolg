@@ -19,20 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Cel.cpp" />
-    <ClCompile Include="Czolg.cpp" />
+    <ClCompile Include="Target.cpp" />
+    <ClCompile Include="Tank.cpp" />
     <ClCompile Include="main.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Pocisk.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cel.h" />
-    <ClInclude Include="Czolg.h" />
-    <ClInclude Include="OkraglyKsztalt.h" />
-    <ClInclude Include="Pocisk.h" />
+    <ClInclude Include="Target.h" />
+    <ClInclude Include="Tank.h" />
+    <ClInclude Include="CircularShape.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Stale.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
