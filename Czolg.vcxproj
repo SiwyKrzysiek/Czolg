@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Target.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="main.cpp">
@@ -29,6 +30,7 @@
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="CircularShape.h" />
