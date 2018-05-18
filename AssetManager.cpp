@@ -5,7 +5,7 @@ using namespace sf;
 
 AssetManager::AssetManager() = default;
 
-void AssetManager::loadFont(string name, string fileName)
+void AssetManager::loadFont(const string& name, const string& fileName)
 {
 	Font font;
 
@@ -13,12 +13,12 @@ void AssetManager::loadFont(string name, string fileName)
 		fonts[name] = font;
 }
 
-Font& AssetManager::getFont(string name)
+const Font& AssetManager::getFont(const string& name) const
 {
 	return fonts.at(name);
 }
 
-void AssetManager::loadTexture(string name, string fileName)
+void AssetManager::loadTexture(const string& name, const string& fileName)
 {
 	Texture texture;
 
@@ -26,7 +26,7 @@ void AssetManager::loadTexture(string name, string fileName)
 		textures[name] = texture;
 }
 
-sf::Texture& AssetManager::getTexture(string name)
+const sf::Texture& AssetManager::getTexture(const string& name) const
 {
 	return textures.at(name);
 }

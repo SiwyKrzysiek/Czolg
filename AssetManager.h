@@ -8,7 +8,7 @@
  * \brief Klasa do zarzadania zasobami takimi jak tekstury i czcionki. 
  */
 //ToDo Wzorzec projektowy Singleton
-class AssetManager //ToDo Wykorzystac Map
+class AssetManager
 {
 private:
 	std::map<std::string, sf::Font> fonts;
@@ -17,10 +17,10 @@ private:
 public:
 	AssetManager();
 
-	void loadFont(std::string name, std::string fileName);
-	sf::Font& getFont(std::string name);
+	void loadFont(const std::string& name, const std::string& fileName);
+	const sf::Font& getFont(const std::string& name) const;
 
-	void loadTexture(std::string name, std::string fileName);
-	sf::Texture& getTexture(std::string name);
+	void loadTexture(const std::string& name, const std::string& fileName);
+	const sf::Texture& getTexture(const std::string& name) const;
 };
 
