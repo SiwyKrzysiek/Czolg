@@ -32,6 +32,10 @@ public:
 	sf::Vector2f getPosition() const override;
 	void update(const sf::Window& window);
 	double getCanonAngle() const;
+	/**
+	 * \brief Zwraca pozycje wylotu lufy
+	 * \return Pozycja srodka wylotu lufy
+	 */
 	sf::Vector2f getMuzzlePosition() const;
 	sf::FloatRect getGlobalBounds() const;
 	const sf::Vector2f& getCanonSize() const;
