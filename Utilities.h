@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include "CircularShape.h"
-#include "Stale.h"
+#include "Constants.h"
 
 /**
  * \brief Zwraca losowt kolor nadajacy sie do pokolorowania Celu
