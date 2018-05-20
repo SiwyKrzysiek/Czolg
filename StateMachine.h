@@ -12,7 +12,7 @@ class StateMachine
 private:
 	std::stack<std::unique_ptr<State>> states;
 	std::unique_ptr<State> newState;
-
+	
 	//Zmienne opisujace stan automatu
 	bool isRemoving;
 	bool isAdding;
@@ -20,7 +20,6 @@ private:
 
 public:
 	StateMachine();
-	~StateMachine();
 
 	/**
 	 * \brief Dodanie nowego stanu na gore stosu
@@ -32,6 +31,6 @@ public:
 
 	void processChanges();
 
-	std::unique_ptr<State> getActiveState() const;
+	std::unique_ptr<State>& getActiveState();
 };
 

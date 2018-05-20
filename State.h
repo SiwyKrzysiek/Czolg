@@ -6,7 +6,7 @@
 class State
 {
 public:
-	virtual void steup() = 0;
+	virtual void seteup() = 0;
 
 	virtual void handleInput() = 0;
 	virtual void update(float dt) = 0;
