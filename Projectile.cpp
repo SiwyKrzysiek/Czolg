@@ -27,6 +27,11 @@ bool Projectile::offScreen() const
 		);
 }
 
+sf::FloatRect Projectile::getGlobalBounds() const
+{
+	return FloatRect(shape.getPosition(), Vector2f(shape.getRadius(), shape.getRadius()));
+}
+
 bool Projectile::operator==(const Projectile& pocisk) const
 {
 	return (

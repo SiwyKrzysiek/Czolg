@@ -4,7 +4,7 @@
 #include "CircularShape.h"
 #include "Utilities.h"
 
-class Projectile : public sf::Drawable, public sf::Transformable, public CircularShape
+class Projectile : public CircularShape
 {
 private:
 	sf::CircleShape shape;
@@ -17,6 +17,7 @@ public:
 	double getRadius() const override;
 	sf::Vector2f getPosition() const override;
 	bool offScreen() const;
+	sf::FloatRect getGlobalBounds() const override;
 	bool operator==(const Projectile& pocisk) const;
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

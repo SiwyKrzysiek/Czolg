@@ -61,31 +61,31 @@ int main()
 	list<Target> cele;
 	for (int i = 0; i < LICZBA_CELI; i++) //ToDo Zamienic na funkcje
 	{
-		Target nowyCel(font, i + 1);
-		bool prawdlowaPozycja = false;
+		Target newTarget(font, i + 1);
+		bool correctPlacment = false;
 
-		for (int i=0; !prawdlowaPozycja && i<MAX_FIT_TRIES; i++)
+		for (int i=0; !correctPlacment && i<MAX_FIT_TRIES; i++)
 		{
-			nowyCel.setPosition(nowyCel.generatePosiblePlacment());
-			prawdlowaPozycja = true;
+			newTarget.setPosition(newTarget.generatePosiblePlacment());
+			correctPlacment = true;
 
-			if (nowyCel.intersects(czolg))
+			if (newTarget.intersects(czolg))
 			{
-				prawdlowaPozycja = false;
+				correctPlacment = false;
 				continue;
 			}
 			for (const Target& cel : cele)
 			{
-				if (nowyCel.intersects(cel))
+				if (newTarget.intersects(cel))
 				{
-					prawdlowaPozycja = false;
+					correctPlacment = false;
 					break;
 				}
 			}
 		}
-		if (!prawdlowaPozycja) break;
+		if (!correctPlacment) break;
 
-		cele.push_back(move(nowyCel));
+		cele.push_back(move(newTarget));
 	}
 
 	//linia u gory ekranu

@@ -6,7 +6,7 @@
 #include "Utilities.h"
 #include "CircularShape.h"
 
-class Target : public sf::Drawable, public sf::Transformable, public CircularShape
+class Target : public CircularShape
 {
 private:
 	sf::CircleShape shape;

@@ -9,5 +9,6 @@ public:
 	virtual ~GameObject();
 
 	virtual sf::FloatRect getGlobalBounds() const = 0;
+	virtual sf::Vector2f getPosition() const = 0;
 };
 

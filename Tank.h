@@ -13,7 +13,7 @@
 #include <iomanip>
 #endif
 
-class Tank : public sf::Drawable, public CircularShape
+class Tank : public CircularShape
 {
 private:
 	const double bodyRadius;
@@ -37,7 +37,7 @@ public:
 	 * \return Pozycja srodka wylotu lufy
 	 */
 	sf::Vector2f getMuzzlePosition() const;
-	sf::FloatRect getGlobalBounds() const;
+	sf::FloatRect getGlobalBounds() const override;
 	const sf::Vector2f& getCanonSize() const;
 	double getRadius() const override;
 	/**
