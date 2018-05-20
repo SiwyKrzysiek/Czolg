@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputMenager.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Target.cpp" />
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputMenager.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
