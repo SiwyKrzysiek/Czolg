@@ -1,11 +1,22 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "GameObject.h"
+#include "CircularShape.h"
 
 class InputMenager
 {
-public:
+private:
 	InputMenager();
+
+public:
+	InputMenager(InputMenager& a) = delete;
+
+	static InputMenager& getInstance()
+	{
+		static InputMenager instance;
+		return instance;
+	}
 
 	/**
 	 * \brief Funkcja sprawdzajaca czy dany obiekt jest klikniety
@@ -14,7 +25,7 @@ public:
 	 * \param button Ktorym przyciskiem myszy
 	 * \return 
 	 */
-	bool isClicked(sf::Transformable& object, sf::RenderWindow& window, sf::Mouse::Button button = sf::Mouse::Button::Left); //ToDo sprawic by obiekt mogl dac swoj rozmiar
+	bool isClicked(GameObject& object, sf::RenderWindow& window, sf::Mouse::Button button = sf::Mouse::Button::Left); //ToDo sprawic by obiekt mogl dac swoj rozmiar
 
 
 };

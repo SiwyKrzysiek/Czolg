@@ -6,10 +6,13 @@
 
 /**
  * \brief Klasa realizujaca wzorzec projektowy State Pattern
+ * Zarzadza stanem w kturym jest program
  */
 class StateMachine
 {
 private:
+	StateMachine();
+
 	std::stack<std::unique_ptr<State>> states;
 	std::unique_ptr<State> newState;
 	
@@ -19,7 +22,13 @@ private:
 	bool isReplacing;
 
 public:
-	StateMachine();
+	StateMachine(StateMachine& a) = delete;
+
+	static StateMachine & getInstance()
+	{
+		static StateMachine instance;
+		return instance;
+	}
 
 	/**
 	 * \brief Dodanie nowego stanu na gore stosu

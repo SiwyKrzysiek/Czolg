@@ -5,11 +5,20 @@ using namespace sf;
 InputMenager::InputMenager()
 = default;
 
-bool InputMenager::isClicked(Transformable& object, RenderWindow& window, Mouse::Button button) //ToDo Oddzielne sprawdzanie dla OkraglyKsztalt z u¿yciem dynamicznego rzutowania
+bool InputMenager::isClicked(GameObject& object, RenderWindow& window, Mouse::Button button) //ToDo Oddzielne sprawdzanie dla OkraglyKsztalt z u¿yciem dynamicznego rzutowania
 {
 	if (Mouse::isButtonPressed(button))
 	{
-		//FloatRect rect(object.ge)
+		try //Gdy obiekt jest okraglym ksztaltem to jest traktowany inaczej
+		{
+			CircularShape& circularObject = dynamic_cast<CircularShape&>(object);
+
+			return circularObject.contains(static_cast<Vector2f>(Mouse::getPosition(window)));
+		}
+		catch(std::bad_cast&)
+		{
+			return object.getGlobalBounds().contains(static_cast<Vector2f>(Mouse::getPosition(window)));
+		}
 	}
 
 	return false;
