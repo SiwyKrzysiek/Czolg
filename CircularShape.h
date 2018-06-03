@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
-#include "Utilities.h"
+#include <math.h>
 
 class CircularShape : public GameObject
 {
@@ -14,5 +14,10 @@ public:
 
 inline bool CircularShape::contains(sf::Vector2f point)
 {
-	return distance(point, getPosition()) <= getRadius();
+	double a = getPosition().x - point.x;
+	double b = getPosition().y - point.y;
+
+	double distance = sqrt(a*a + b * b);
+
+	return distance <= getRadius();
 }
