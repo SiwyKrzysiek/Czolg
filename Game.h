@@ -7,6 +7,7 @@
 #include "MissingFileException.h"
 #include "AssetManager.h"
 #include "StateMachine.h"
+#include "IntroState.h"
 
 class Game
 {

@@ -14,16 +14,14 @@ Game::Game(int width, int height, const std::string& title)
 	{
 		AssetManager::getInstance().loadFont("Main Font", "tahoma.ttf");
 	}
-	catch (MissingFileException& e)
+	catch (MissingFileException&)
 	{
 		cerr << "Nie udalo sie wczytac czcionki" << endl;
 		getchar();
 		exit(1);
 	}
 
-	//ToDo Dodac pierwszy stan
-
-	run();
+	StateMachine::getInstance().add(unique_ptr<State>(make_unique<IntroState>(window)));
 }
 
 void Game::run()
