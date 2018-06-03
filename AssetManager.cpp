@@ -12,7 +12,7 @@ void AssetManager::loadFont(const string& name, const string& fileName)
 	if (font.loadFromFile(fileName))
 		fonts[name] = font;
 	else
-		; //ToDO Throw Some exeption
+		throw MissingFileException("Nie udalo sie wczytac pliku");
 }
 
 const Font& AssetManager::getFont(const string& name) const
@@ -26,6 +26,8 @@ void AssetManager::loadTexture(const string& name, const string& fileName)
 
 	if (texture.loadFromFile(fileName))
 		textures[name] = texture;
+	else
+		throw MissingFileException("Nie udalo sie wczytac pliku");
 }
 
 const sf::Texture& AssetManager::getTexture(const string& name) const

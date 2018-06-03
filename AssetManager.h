@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "MissingFileException.h"
 
 /**
  * \brief Klasa do zarzadania zasobami takimi jak tekstury i czcionki. 
