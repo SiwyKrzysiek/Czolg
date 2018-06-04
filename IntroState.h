@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "State.h"
 #include "AssetManager.h"
+#include "Utilities.h"
 
 class IntroState : public State //ToDo Dodac obrazek czolgu i przejscie do menu
 {

@@ -9,7 +9,11 @@ MainMenueState::MainMenueState(sf::RenderWindow& window) : window(window)
 
 void MainMenueState::seteup()
 {
+	AssetManager& assetMenager = AssetManager::getInstance();
+	assetMenager.loadTexture("Play Button", "Textures/play button");
 
+	playButton.setTexture(assetMenager.getTexture("Play Button"));
+	//playButton.setOrigin(playButton.getGlobalBounds() / 2.0);
 }
 
 void MainMenueState::handleInput()

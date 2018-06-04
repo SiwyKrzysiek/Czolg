@@ -22,7 +22,7 @@ void IntroState::seteup()
 	title.setPosition(static_cast<double>(window.getSize().x) / 2.0 - 140, window.getSize().y*0.15);
 
 	picture.setTexture(assetMenager.getTexture("Tank1"));
-	picture.setOrigin(picture.getGlobalBounds().width / 2.0, picture.getGlobalBounds().height / 2.0);
+	centerOriginInRectangle(picture);
 	picture.setPosition(window.getSize().x / 2.0, window.getSize().y / 2.0);
 	
 }

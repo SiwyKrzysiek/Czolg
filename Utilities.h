@@ -14,6 +14,17 @@ template <typename A, typename B>
 double rootSumSquared(A a, B b);
 
 /**
+ * \brief Ustawia origin prostokatnego obiektu w jego srodku
+ * \tparam T typ majacy metody getGlobaBounds() i setOrigin()
+ * \param object obiekt do ustawienia orgin 
+ */
+template <typename T>
+void centerOriginInRectangle(T& object)
+{
+	object.setOrigin(static_cast<float>(object.getGlobalBounds().width) / 2.0f, static_cast<float>(object.getGlobalBounds().height) / 2.0f);
+}
+
+/**
  * \brief Liczy odleglosc miedzy dwoma punktammi
  * \param a puntk a 
  * \param b punkt b
