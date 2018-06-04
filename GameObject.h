@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class GameObject : public sf::Drawable, public sf::Transformable
+class GameObject : public virtual sf::Drawable, public virtual sf::Transformable
 {
 public:
 	GameObject();

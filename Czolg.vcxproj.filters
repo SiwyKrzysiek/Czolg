@@ -96,4 +96,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\czolg1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\czolg2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

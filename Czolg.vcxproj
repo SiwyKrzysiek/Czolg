@@ -51,6 +51,10 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\czolg1.png" />
+    <Image Include="Textures\czolg2.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{0d5fad1d-7647-47be-8c3f-de00904c8c58}</ProjectGuid>

@@ -23,7 +23,7 @@ using namespace std;
 
 int main()
 {
-	Game game(SCREEN_WIDTH+300, SCREEN_HEIGHT, "Moja gra");
+	Game game(SCREEN_WIDTH+300, SCREEN_HEIGHT, "Ciezkie zycie czolgisty");
 	game.run();
 
 //	srand(time(nullptr));

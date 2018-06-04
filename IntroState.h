@@ -8,6 +8,8 @@ class IntroState : public State //ToDo Dodac obrazek czolgu i przejscie do menu
 {
 	sf::RenderWindow& window;
 	sf::Text title;
+	sf::Sprite picture;
+	int frame; //Aktualna klatka animacji
 
 public:
 	IntroState(sf::RenderWindow& window);
