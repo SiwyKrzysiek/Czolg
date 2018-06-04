@@ -25,7 +25,8 @@ public:
 	 * \param button Ktorym przyciskiem myszy
 	 * \return 
 	 */
-	bool isClicked(GameObject& object, sf::RenderWindow& window, sf::Mouse::Button button = sf::Mouse::Button::Left); //ToDo sprawic by obiekt mogl dac swoj rozmiar
+	bool isClicked(GameObject& object, sf::RenderWindow& window, sf::Mouse::Button button = sf::Mouse::Button::Left) const;
+	bool isClicked(sf::Sprite& object, sf::RenderWindow& window, sf::Mouse::Button button = sf::Mouse::Button::Left) const;
 
 
 };
