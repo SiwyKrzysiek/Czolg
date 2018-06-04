@@ -6,6 +6,7 @@
 class State
 {
 public:
+	virtual ~State() = default;
 	virtual void seteup() = 0;
 
 	virtual void handleInput() = 0;

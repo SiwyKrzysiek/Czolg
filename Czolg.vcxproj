@@ -22,6 +22,7 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InputMenager.cpp" />
     <ClCompile Include="IntroState.cpp" />
     <ClCompile Include="MainMenueState.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="InputMenager.h" />
     <ClInclude Include="IntroState.h" />
     <ClInclude Include="MainMenueState.h" />

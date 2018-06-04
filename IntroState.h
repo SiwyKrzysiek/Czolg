@@ -4,6 +4,8 @@
 #include "State.h"
 #include "AssetManager.h"
 #include "Utilities.h"
+#include "StateMachine.h"
+#include "MainMenueState.h"
 
 class IntroState : public State //ToDo Dodac obrazek czolgu i przejscie do menu
 {

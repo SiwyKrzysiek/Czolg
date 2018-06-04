@@ -45,7 +45,7 @@ void IntroState::handleInput()
 void IntroState::update()
 {
 	if (clock.getElapsedTime().asSeconds() > 3)
-		;//Todo Przejscie do stanu menue
+		StateMachine::getInstance().add(std::unique_ptr<State>(std::make_unique<MainMenueState>(window)));
 
 	static int counter = 0;
 	counter++;

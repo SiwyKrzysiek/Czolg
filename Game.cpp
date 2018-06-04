@@ -7,7 +7,7 @@ Game::Game(int width, int height, const std::string& title)
 {
 	ContextSettings settings;
 	settings.antialiasingLevel = 8;
-	window.create(VideoMode(width, height), title, Style::Default, settings);
+	window.create(VideoMode(width, height), title, Style::Titlebar | Style::Close, settings);
 	window.setFramerateLimit(60);
 
 	try
