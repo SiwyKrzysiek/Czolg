@@ -10,6 +10,7 @@ class IntroState : public State //ToDo Dodac obrazek czolgu i przejscie do menu
 	sf::Text title;
 	sf::Sprite picture;
 	int frame; //Aktualna klatka animacji
+	sf::Clock clock;
 
 public:
 	IntroState(sf::RenderWindow& window);

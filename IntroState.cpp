@@ -44,6 +44,9 @@ void IntroState::handleInput()
 
 void IntroState::update()
 {
+	if (clock.getElapsedTime().asSeconds() > 3)
+		;//Todo Przejscie do stanu menue
+
 	static int counter = 0;
 	counter++;
 
