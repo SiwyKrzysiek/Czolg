@@ -41,11 +41,11 @@ void MainMenueState::handleInput()
 		case Event::MouseButtonPressed:
 			if (InputMenager::getInstance().isClicked(playButton, window))
 			{
-				std::cout << "To gramy!" << std::endl;
+				StateMachine::getInstance().add(std::unique_ptr<State>(std::make_unique<GameState>(window)));
 			}
 			if (InputMenager::getInstance().isClicked(settingsButton, window))
 			{
-				std::cout << "Oto ustawienia" << std::endl;
+				std::cout << "Oto ustawienia" << std::endl; //ToDo Implement
 			}
 			if (InputMenager::getInstance().isClicked(exitButton, window))
 			{

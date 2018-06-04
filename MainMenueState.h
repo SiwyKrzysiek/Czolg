@@ -5,6 +5,8 @@
 #include "AssetManager.h"
 #include "Utilities.h"
 #include "InputMenager.h"
+#include "StateMachine.h"
+#include "GameState.h"
 #include <iostream>
 
 class MainMenueState : public State
