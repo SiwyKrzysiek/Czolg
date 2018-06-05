@@ -18,10 +18,10 @@ void Target::initialize()
 /**
  * \brief Konstruktor tworzacy cel wraz z numerem
  * \param font Czcionka do pola tekstowego
- * \param numer Numer wyswietlany w srodku
+ * \param number Numer wyswietlany w srodku
  */
-Target::Target(const Font& font, int numer) : shape(rand() % 25 + 25),
-number(std::to_string(numer), font, shape.getRadius()*1.5)
+Target::Target(const Font& font, int number) : shape(rand() % 25 + 25),
+number(std::to_string(number), font, shape.getRadius()*1.5), myNumber(number)
 {
 	initialize();
 }
@@ -36,10 +36,17 @@ number("", font, shape.getRadius()*1.5)
 	initialize();
 }
 
-void Target::setNumber(int numer)
+void Target::setNumber(int number)
 {
-	this->number.setString(std::to_string(numer));
+	myNumber = number;
+	this->number.setString(std::to_string(myNumber));
 }
+
+int Target::getNumber() const
+{
+	return myNumber;
+}
+
 
 void Target::update()
 {
@@ -62,9 +69,9 @@ sf::Vector2f Target::getPosition() const
 	return Transformable::getPosition();
 }
 
-bool Target::intersects(const CircularShape& inny) const
+bool Target::intersects(const CircularShape& another) const
 {
-	return intersect(*this, inny);
+	return intersect(*this, another);
 }
 
 Vector2f Target::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
@@ -75,12 +82,12 @@ Vector2f Target::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
 	return Vector2f(x, y);
 }
 
-bool Target::operator==(const Target& cel) const
+bool Target::operator==(const Target& target) const
 {
 	return (
-		cel.number.getString() == number.getString() &&
-		cel.getPosition() == getPosition() &&
-		cel.getRadius() == getRadius()
+		target.number.getString() == number.getString() &&
+		target.getPosition() == getPosition() &&
+		target.getRadius() == getRadius()
 		);
 }
 

@@ -25,7 +25,7 @@ void GameState::seteup()
 	score.setFont(AssetManager::getInstance().getFont("Main Font"));
 	score.setFillColor(Color::White);
 	score.setCharacterSize(23);
-	score.setPosition(info.getGlobalBounds().width + window.getSize().x*0.2, 0);
+	score.setPosition(info.getGlobalBounds().width + window.getSize().x*0.1, 0);
 	score.setString("Score: " + to_string(points));
 
 	reloadBar.setFillColor(Color::Green);
@@ -73,6 +73,8 @@ void GameState::update()
 		projectile.update();
 
 	adjustReloadBar();
+
+	score.setString("Score: " + to_string(points));
 
 	#ifdef PRINT_ANGLE_AND_REALOAD_TIME
 	#ifdef _DEBUG
@@ -143,8 +145,8 @@ void GameState::generateTargets()
 
 void GameState::cleanProjectiles()
 {
-	vector<Projectile> pociskiDoUsuniecia;
-	vector<Target> celeDoUsuniecia;
+	vector<Projectile> projectilesToRemove;
+	vector<Target> targetsToRemove;
 
 	for (Projectile& projectile : projectiles)
 	{
@@ -152,20 +154,23 @@ void GameState::cleanProjectiles()
 		{
 			if (projectile.intersects(target))
 			{
-				pociskiDoUsuniecia.push_back(projectile);
-				celeDoUsuniecia.push_back(target);
+				projectilesToRemove.push_back(projectile);
+				targetsToRemove.push_back(target);
 			}
 		}
 
 		if (projectile.offScreen())
 		{
-			pociskiDoUsuniecia.push_back(projectile);
+			projectilesToRemove.push_back(projectile);
 		}
 	}
 
-	for (Projectile& pocisk : pociskiDoUsuniecia)
-		projectiles.remove(pocisk);
+	for (Projectile& projectile : projectilesToRemove)
+		projectiles.remove(projectile);
 
-	for (Target& cel : celeDoUsuniecia)
-		targets.remove(cel);
+	for (Target& target : targetsToRemove)
+	{
+		points += target.getNumber();
+		targets.remove(target);
+	}
 }
