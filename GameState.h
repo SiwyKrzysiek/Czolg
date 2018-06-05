@@ -16,7 +16,7 @@
 class GameState : public State
 {
 private:
-	int LICZBA_CELI = 15; //ToDo Wczytanie liczby celow z ustawien
+	const int LICZBA_CELI = 15; //ToDo Wczytanie liczby celow z ustawien
 
 	sf::RenderWindow& window;
 	Tank tank;
@@ -26,13 +26,10 @@ private:
 
 	void generateTargets();
 	/**
-	 * \brief Usuwa niepotrzebne pociski
+	 * \brief Usuwa niepotrzebne pociski i zestrzelone cele
 	 */
 	void cleanProjectiles();
-	/**
-	 * \brief Usuwa zniszczone cele
-	 */
-	void cleanTargets();
+
 public:
 	GameState(sf::RenderWindow& window);
 

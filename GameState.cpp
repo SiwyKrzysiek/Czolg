@@ -23,6 +23,8 @@ void GameState::seteup()
 
 void GameState::handleInput()
 {
+	static bool inputFromPreviousState = true;
+
 	Event event;
 	while (window.pollEvent(event))
 	{
@@ -31,22 +33,22 @@ void GameState::handleInput()
 		case Event::Closed:
 			window.close();
 			break;
-		case Event::MouseButtonPressed:
-			if (Mouse::isButtonPressed(Mouse::Left))
-			{
-				tank.fire(projectiles);
-			}
+		case Event::MouseButtonReleased:
+			inputFromPreviousState = false;
 			break;
 		}
 	}
 	
+	if (Mouse::isButtonPressed(Mouse::Left) && !inputFromPreviousState)
+	{
+		tank.fire(projectiles);
+	}
 }
 
 void GameState::update()
 {
 	tank.update(window);
 
-	cleanTargets();
 	cleanProjectiles();
 
 	for (Projectile& projectile : projectiles)
@@ -104,6 +106,7 @@ void GameState::generateTargets()
 void GameState::cleanProjectiles()
 {
 	vector<Projectile> pociskiDoUsuniecia;
+	vector<Target> celeDoUsuniecia;
 
 	for (Projectile& projectile : projectiles)
 	{
@@ -112,6 +115,7 @@ void GameState::cleanProjectiles()
 			if (projectile.intersects(target))
 			{
 				pociskiDoUsuniecia.push_back(projectile);
+				celeDoUsuniecia.push_back(target);
 			}
 		}
 
@@ -123,22 +127,6 @@ void GameState::cleanProjectiles()
 
 	for (Projectile& pocisk : pociskiDoUsuniecia)
 		projectiles.remove(pocisk);
-}
-
-void GameState::cleanTargets()
-{
-	vector<Target> celeDoUsuniecia;
-
-	for (Projectile& projectile : projectiles)
-	{
-		for (Target& target : targets)
-		{
-			if (projectile.intersects(target))
-			{
-				celeDoUsuniecia.push_back(target);
-			}
-		}
-	}
 
 	for (Target& cel : celeDoUsuniecia)
 		targets.remove(cel);

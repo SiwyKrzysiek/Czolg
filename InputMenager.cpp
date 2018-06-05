@@ -27,5 +27,8 @@ bool InputMenager::isClicked(GameObject& object, RenderWindow& window, Mouse::Bu
 
 bool InputMenager::isClicked(sf::Sprite& object, sf::RenderWindow& window, sf::Mouse::Button button) const
 {
-	return object.getGlobalBounds().contains(static_cast<Vector2f>(Mouse::getPosition(window)));
+	if (Mouse::isButtonPressed(button))
+		return object.getGlobalBounds().contains(static_cast<Vector2f>(Mouse::getPosition(window)));
+
+	return false;
 }
