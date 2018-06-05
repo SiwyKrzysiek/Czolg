@@ -3,10 +3,10 @@
 using namespace sf;
 using namespace std;
 
-GameState::GameState(sf::RenderWindow& window,const int targetCount) : window(window), points(0), tank(RELOAD_TIME_IN_SECONDS ,90),
-active(true), TARGET_COUNT(targetCount), roundTime(20), timeLeft(roundTime)
+GameState::GameState(sf::RenderWindow& window, int targetCount, int tankRealoadTime, int gameLenght) : window(window), points(0), tank(tankRealoadTime ,90),
+active(true), TARGET_COUNT(targetCount), roundTime(gameLenght), timeLeft(roundTime)
 {
-
+	
 }
 
 void GameState::seteup()

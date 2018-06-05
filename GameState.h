@@ -45,7 +45,7 @@ private:
 	void adjustReloadBar();
 
 public:
-	GameState(sf::RenderWindow& window,const int targetCount = 15);
+	GameState(sf::RenderWindow& window, int targetCount, int tankRealoadTime, int gameLenght);
 
 	void seteup() override;
 	void handleInput() override;

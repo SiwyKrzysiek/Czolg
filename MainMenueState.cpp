@@ -41,7 +41,7 @@ void MainMenueState::handleInput()
 		case Event::MouseButtonPressed:
 			if (InputMenager::getInstance().isClicked(playButton, window))
 			{
-				StateMachine::getInstance().add(std::unique_ptr<State>(std::make_unique<GameState>(window)));
+				StateMachine::getInstance().add(std::unique_ptr<State>(std::make_unique<GameState>(window, NUMBER_OF_TARGETS, RELOAD_TIME_IN_SECONDS, GAME_LENGHT)));
 			}
 			if (InputMenager::getInstance().isClicked(settingsButton, window))
 			{
