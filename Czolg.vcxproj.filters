@@ -115,5 +115,14 @@
     <Image Include="Textures\czolg2.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Textures\exit button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\play button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\settings button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

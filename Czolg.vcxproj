@@ -58,6 +58,9 @@
   <ItemGroup>
     <Image Include="Textures\czolg1.png" />
     <Image Include="Textures\czolg2.png" />
+    <Image Include="Textures\exit button.png" />
+    <Image Include="Textures\play button.png" />
+    <Image Include="Textures\settings button.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
