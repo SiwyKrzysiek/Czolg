@@ -20,6 +20,7 @@ private:
 	const double middleCircleRadius;
 	double canonAngle; //Kat lufy w RADIANACH
 	double reload;
+	double maxCooldown;
 	sf::Vector2f position;
 	sf::RectangleShape canon;
 	sf::CircleShape body;
@@ -27,7 +28,7 @@ private:
 	sf::Clock clock;
 
 public:
-	Tank(const double promien = 100);
+	Tank(const double reloadTime, const double promien = 100);
 	void setPosition(float x, float y);
 	sf::Vector2f getPosition() const override;
 	void update(const sf::Window& window);

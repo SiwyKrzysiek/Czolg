@@ -10,6 +10,8 @@
 #include "Tank.h"
 #include "Target.h"
 #include "AssetManager.h"
+#include "StateMachine.h"
+#include "MainMenueState.h"
 
 /**
  * \brief Stan glownego trybu gry
@@ -17,10 +19,13 @@
 class GameState : public State
 {
 private:
-	const int LICZBA_CELI = 15; //ToDo Wczytanie liczby celow z ustawien
+	const int TARGET_COUNT; //ToDo Wczytanie liczby celow z ustawien
 	const double SPACE_AT_TOP = 30;
 
 	int points;
+	bool active;
+	const double roundTime;
+	double timeLeft;
 	sf::RenderWindow& window;
 	Tank tank;
 	std::list<Target> targets;
@@ -28,7 +33,9 @@ private:
 	sf::RectangleShape topLine;
 	sf::Text info;
 	sf::Text score;
+	sf::Text timeLeftInfo;
 	sf::RectangleShape reloadBar;
+	sf::Clock clock;
 
 	void generateTargets();
 	/**
@@ -38,7 +45,7 @@ private:
 	void adjustReloadBar();
 
 public:
-	GameState(sf::RenderWindow& window);
+	GameState(sf::RenderWindow& window,const int targetCount = 15);
 
 	void seteup() override;
 	void handleInput() override;

@@ -3,11 +3,12 @@
 
 using namespace sf;
 
-Tank::Tank(const double radius) : position(0.f, 0.f),
+Tank::Tank(const double reloadTime, const double radius) : position(0.f, 0.f),
 bodyRadius(radius),
 middleCircleRadius(0.4*radius),
 canonAngle(0.0),
 reload(0.0),
+maxCooldown(reloadTime),
 canon(Vector2f(1.5*radius, 0.5*radius)),
 body(radius, 70),
 middle(middleCircleRadius, 60)
@@ -94,7 +95,7 @@ void Tank::fire(std::list<Projectile>& pociski)
 	Vector2f kierunek(std::cos(getCanonAngle()), std::sin(getCanonAngle())); //Wektor jednostkowy w kierunku lufy
 	pociski.emplace_back(getMuzzlePosition(), getCanonSize().y / 5, kierunek * static_cast<float>(BULLET_SPEED));
 
-	reload = RELOAD_TIME_IN_SECONDS;
+	reload = maxCooldown;
 	clock.restart();
 }
 
@@ -105,7 +106,7 @@ double Tank::getReloadTime() const
 
 double Tank::getMaxReloadTime() const
 {
-	return RELOAD_TIME_IN_SECONDS;
+	return maxCooldown;
 }
 
 std::string Tank::getDebugInfo() const
