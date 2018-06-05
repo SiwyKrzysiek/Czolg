@@ -10,7 +10,7 @@ class Target : public CircularShape
 {
 private:
 	sf::CircleShape shape;
-	sf::Text numer;
+	sf::Text number;
 	void initialize();
 
 public:

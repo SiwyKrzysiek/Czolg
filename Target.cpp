@@ -9,10 +9,10 @@ void Target::initialize()
 	shape.setOutlineThickness(-2);
 	shape.setOrigin(shape.getRadius(), shape.getRadius());
 
-	numer.setFillColor(Color::White);
-	numer.setOutlineColor(Color::Black);
-	numer.setOutlineThickness(2);
-	numer.setOrigin(numer.getGlobalBounds().width / 2, numer.getGlobalBounds().height / 1.3);
+	number.setFillColor(Color::White);
+	number.setOutlineColor(Color::Black);
+	number.setOutlineThickness(2);
+	number.setOrigin(number.getGlobalBounds().width / 2, number.getGlobalBounds().height / 1.3);
 }
 
 /**
@@ -21,7 +21,7 @@ void Target::initialize()
  * \param numer Numer wyswietlany w srodku
  */
 Target::Target(const Font& font, int numer) : shape(rand() % 25 + 25),
-numer(std::to_string(numer), font, shape.getRadius()*1.5)
+number(std::to_string(numer), font, shape.getRadius()*1.5)
 {
 	initialize();
 }
@@ -31,20 +31,20 @@ numer(std::to_string(numer), font, shape.getRadius()*1.5)
  * \param font Font czcionka do pola tekstowego
  */
 Target::Target(const sf::Font& font) : shape(rand() % 25 + 25),
-numer("", font, shape.getRadius()*1.5)
+number("", font, shape.getRadius()*1.5)
 {
 	initialize();
 }
 
 void Target::setNumber(int numer)
 {
-	this->numer.setString(std::to_string(numer));
+	this->number.setString(std::to_string(numer));
 }
 
 void Target::update()
 {
 	shape.setPosition(getPosition());
-	numer.setPosition(getPosition());
+	number.setPosition(getPosition());
 }
 
 sf::FloatRect Target::getGlobalBounds() const
@@ -78,7 +78,7 @@ Vector2f Target::generatePosiblePlacment() const //ToDo Mozna zrobic lepiej
 bool Target::operator==(const Target& cel) const
 {
 	return (
-		cel.numer.getString() == numer.getString() &&
+		cel.number.getString() == number.getString() &&
 		cel.getPosition() == getPosition() &&
 		cel.getRadius() == getRadius()
 		);
@@ -89,5 +89,5 @@ void Target::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	const_cast<Target*>(this)->update();
 
 	target.draw(shape, states);
-	target.draw(numer, states);
+	target.draw(number, states);
 }

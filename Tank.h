@@ -45,7 +45,14 @@ public:
 	 * \param pociski Lista aktualnie istniejacych pociskow
 	 */
 	void fire(std::list<Projectile>& pociski);
+	/**
+	 * \brief Zwraca akutalny czas potrzebny na przeladowanie
+	 */
 	double getReloadTime() const;
+	/**
+	 * \brief Zwraca czas potrzbny na pelne przeladowanie
+	 */
+	double getMaxReloadTime() const;
 
 #ifdef _DEBUG
 	std::string getDebugInfo() const;

@@ -16,10 +16,11 @@ void IntroState::seteup()
 	title.setString("Ciezkie zycie czolgisty");
 	title.setFont(assetMenager.getFont("Main Font"));
 	title.setFillColor(Color::Green);
-	title.setCharacterSize(24);
+	title.setCharacterSize(32);
 	title.setStyle(Text::Bold);
+	title.setOrigin(title.getGlobalBounds().width / 2.0, title.getGlobalBounds().height / 2.0);
 
-	title.setPosition(static_cast<double>(window.getSize().x) / 2.0 - 140, window.getSize().y*0.15);
+	title.setPosition(static_cast<double>(window.getSize().x) / 2.0, static_cast<double>(window.getSize().y)*0.18);
 
 	picture.setTexture(assetMenager.getTexture("Tank1"));
 	centerOriginInRectangle(picture);

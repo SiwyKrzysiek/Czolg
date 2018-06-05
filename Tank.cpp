@@ -103,6 +103,11 @@ double Tank::getReloadTime() const
 	return reload>0 ? reload : 0.0;
 }
 
+double Tank::getMaxReloadTime() const
+{
+	return RELOAD_TIME_IN_SECONDS;
+}
+
 std::string Tank::getDebugInfo() const
 {
 	std::stringstream ss;
